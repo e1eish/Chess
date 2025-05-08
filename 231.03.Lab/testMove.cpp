@@ -2,7 +2,7 @@
  * Header File:
  *    TEST MOVE 
  * Author:
- *    <your name here>
+ *    Ethan Leishman, Noah McSheehy, Bro. Helfrich
  * Summary:
  *    test the Move class
  ************************************************************************/
@@ -19,9 +19,13 @@
   *         dest  =INVALID
   **************************************/
 void TestMove::constructor_default() 
-{
-   assertUnit(NOT_YET_IMPLEMENTED);
-}
+{  // setup
+   // exercise
+   Move m;
+   // verify
+   assert(m.source.isInvalid());
+   assert(m.dest.isInvalid());
+}  // teardown
 
  /*************************************
   * CONSTRUCTOR : standard string move
@@ -32,6 +36,7 @@ void TestMove::constructor_default()
   **************************************/
 void TestMove::constructString_simple()
 {
+   
    assertUnit(NOT_YET_IMPLEMENTED);
 }
 
@@ -225,9 +230,18 @@ void TestMove::getText_castleQueen()
   * Output:  ' '
   **************************************/
 void TestMove::letterFromPieceType_space()
-{
-   assertUnit(NOT_YET_IMPLEMENTED);
-}
+{  // setup
+   Move m;
+   PieceType pt = SPACE;
+   char c = 'z';
+   
+   // exercise
+   c = m.letterFromPieceType(pt);
+   
+   // verify
+   assertEquals(pt, SPACE);
+   assertEquals(c, ' ');
+}  // teardown
 
  /*************************************
   * LETTER FROM PIECE TYPE pawn
@@ -235,9 +249,18 @@ void TestMove::letterFromPieceType_space()
   * Output:  'p'
   **************************************/
 void TestMove::letterFromPieceType_pawn()
-{
-   assertUnit(NOT_YET_IMPLEMENTED);
-}
+{  // setup
+   Move m;
+   PieceType pt = PAWN;
+   char c = 'z';
+   
+   // exercise
+   c = m.letterFromPieceType(pt);
+   
+   // verify
+   assertEquals(pt, PAWN);
+   assertEquals(c, 'p');
+}  // teardown
 
  /*************************************
   * LETTER FROM PIECE TYPE bishop
@@ -245,9 +268,18 @@ void TestMove::letterFromPieceType_pawn()
   * Output:  'b'
   **************************************/
 void TestMove::letterFromPieceType_bishop()
-{
-   assertUnit(NOT_YET_IMPLEMENTED);
-}
+{  // setup
+   Move m;
+   PieceType pt = BISHOP;
+   char c = 'z';
+   
+   // exercise
+   c = m.letterFromPieceType(pt);
+   
+   // verify
+   assertEquals(pt, BISHOP);
+   assertEquals(c, 'b');
+}  // teardown
 
  /*************************************
   * LETTER FROM PIECE TYPE knight
@@ -255,9 +287,18 @@ void TestMove::letterFromPieceType_bishop()
   * Output:  'n'
   **************************************/
 void TestMove::letterFromPieceType_knight()
-{
-   assertUnit(NOT_YET_IMPLEMENTED);
-}
+{  // setup
+   Move m;
+   PieceType pt = KNIGHT;
+   char c = 'z';
+   
+   // exercise
+   c = m.letterFromPieceType(pt);
+   
+   // verify
+   assertEquals(pt, KNIGHT);
+   assertEquals(c, 'n');
+}  // teardown
 
  /*************************************
   * LETTER FROM PIECE TYPE rook
@@ -265,9 +306,18 @@ void TestMove::letterFromPieceType_knight()
   * Output:  'r'
   **************************************/
 void TestMove::letterFromPieceType_rook()
-{
-   assertUnit(NOT_YET_IMPLEMENTED);
-}
+{  // setup
+   Move m;
+   PieceType pt = ROOK;
+   char c = 'z';
+   
+   // exercise
+   c = m.letterFromPieceType(pt);
+   
+   // verify
+   assertEquals(pt, ROOK);
+   assertEquals(c, 'r');
+}  // teardown
 
  /*************************************
   * LETTER FROM PIECE TYPE queen
@@ -275,9 +325,18 @@ void TestMove::letterFromPieceType_rook()
   * Output:  'q'
   **************************************/
 void TestMove::letterFromPieceType_queen()
-{
-   assertUnit(NOT_YET_IMPLEMENTED);
-}
+{  // setup
+   Move m;
+   PieceType pt = QUEEN;
+   char c = 'z';
+   
+   // exercise
+   c = m.letterFromPieceType(pt);
+   
+   // verify
+   assertEquals(pt, QUEEN);
+   assertEquals(c, 'q');
+}  // teardown
 
  /*************************************
   * LETTER FROM PIECE TYPE king
@@ -285,9 +344,18 @@ void TestMove::letterFromPieceType_queen()
   * Output:  'k'
   **************************************/
 void TestMove::letterFromPieceType_king()
-{
-   assertUnit(NOT_YET_IMPLEMENTED);
-}
+{  // setup
+   Move m;
+   PieceType pt = KING;
+   char c = 'z';
+   
+   // exercise
+   c = m.letterFromPieceType(pt);
+   
+   // verify
+   assertEquals(pt, KING);
+   assertEquals(c, 'k');
+}  // teardown
 
  /*************************************
   * PIECE TYPE FROM LETTER pawn
@@ -295,9 +363,18 @@ void TestMove::letterFromPieceType_king()
   * Output:  PAWN
   **************************************/
 void TestMove::pieceTypeFromLetter_pawn()
-{
-   assertUnit(NOT_YET_IMPLEMENTED);
-}
+{  // setup
+   Move m;
+   char c = 'p';
+   PieceType pt = INVALID;
+   
+   // exercise
+   pt = m.pieceTypeFromLetter(c);
+   
+   // verify
+   assertEquals(c, 'p');
+   assertEquals(pt, PAWN);
+}  // teardown
 
  /*************************************
   * PIECE TYPE FROM LETTER bishop
@@ -305,9 +382,18 @@ void TestMove::pieceTypeFromLetter_pawn()
   * Output:  BISHOP
   **************************************/
 void TestMove::pieceTypeFromLetter_bishop()
-{
-   assertUnit(NOT_YET_IMPLEMENTED);
-}
+{  // setup
+   Move m;
+   char c = 'b';
+   PieceType pt = INVALID;
+   
+   // exercise
+   pt = m.pieceTypeFromLetter(c);
+   
+   // verify
+   assertEquals(c, 'b');
+   assertEquals(pt, BISHOP);
+}  // teardown
 
  /*************************************
   * PIECE TYPE FROM LETTER knight
@@ -315,9 +401,18 @@ void TestMove::pieceTypeFromLetter_bishop()
   * Output:  KNIGHT
   **************************************/
 void TestMove::pieceTypeFromLetter_knight()
-{
-   assertUnit(NOT_YET_IMPLEMENTED);
-}
+{  // setup
+   Move m;
+   char c = 'n';
+   PieceType pt = INVALID;
+   
+   // exercise
+   pt = m.pieceTypeFromLetter(c);
+   
+   // verify
+   assertEquals(c, 'n');
+   assertEquals(pt, KNIGHT);
+}  // teardown
 
  /*************************************
   * PIECE TYPE FROM LETTER rook
@@ -325,9 +420,18 @@ void TestMove::pieceTypeFromLetter_knight()
   * Output:  ROOK
   **************************************/
 void TestMove::pieceTypeFromLetter_rook()
-{
-   assertUnit(NOT_YET_IMPLEMENTED);
-}
+{  // setup
+   Move m;
+   char c = 'r';
+   PieceType pt = INVALID;
+   
+   // exercise
+   pt = m.pieceTypeFromLetter(c);
+   
+   // verify
+   assertEquals(c, 'r');
+   assertEquals(pt, ROOK);
+}  // teardown
 
  /*************************************
   * PIECE TYPE FROM LETTER queen
@@ -335,9 +439,18 @@ void TestMove::pieceTypeFromLetter_rook()
   * Output:  QUEEN
   **************************************/
 void TestMove::pieceTypeFromLetter_queen()
-{
-   assertUnit(NOT_YET_IMPLEMENTED);
-}
+{  // setup
+   Move m;
+   char c = 'q';
+   PieceType pt = INVALID;
+   
+   // exercise
+   pt = m.pieceTypeFromLetter(c);
+   
+   // verify
+   assertEquals(c, 'q');
+   assertEquals(pt, QUEEN);
+}  // teardown
 
  /*************************************
   * PIECE TYPE FROM LETTER king
@@ -345,9 +458,18 @@ void TestMove::pieceTypeFromLetter_queen()
   * Output:  KING
   **************************************/
 void TestMove::pieceTypeFromLetter_king() 
-{
-   assertUnit(NOT_YET_IMPLEMENTED);
-}
+{  // setup
+   Move m;
+   char c = 'k';
+   PieceType pt = INVALID;
+   
+   // exercise
+   pt = m.pieceTypeFromLetter(c);
+   
+   // verify
+   assertEquals(c, 'k');
+   assertEquals(pt, KING);
+}  // teardown
 
 
  /*************************************
@@ -356,9 +478,25 @@ void TestMove::pieceTypeFromLetter_king()
   * Output: false
   **************************************/
 void TestMove::equal_not()
-{
-   assertUnit(NOT_YET_IMPLEMENTED);
-}
+{  // setup
+   Move m1;
+   Move m2;
+   Position s1 = "b2";
+   Position d1 = "b4";
+   Position s2 = "b2";
+   Position d2 = "b5";
+   m1.source = s1;
+   m1.dest   = d1;
+   m2.source = s2;
+   m2.dest   = d2;
+   bool result = true;
+   
+   // exercise
+   result = m1 == m2;
+   
+   // verify
+   assertEquals(result, false);
+}  // teardown
 
  /*************************************
   * EQUAL - EQUALS
@@ -366,9 +504,25 @@ void TestMove::equal_not()
   * Output: true
   **************************************/
 void TestMove::equal_equals()
-{
-   assertUnit(NOT_YET_IMPLEMENTED);
-}
+{  // setup
+   Move m1;
+   Move m2;
+   Position s1 = "b2";
+   Position d1 = "b4";
+   Position s2 = "b2";
+   Position d2 = "b4";
+   m1.source = s1;
+   m1.dest   = d1;
+   m2.source = s2;
+   m2.dest   = d2;
+   bool result = false;
+   
+   // exercise
+   result = m1 == m2;
+   
+   // verify
+   assertEquals(result, true);
+}  // teardown
 
  /*************************************
   * LESS THAN - LESS THAN
@@ -381,9 +535,25 @@ void TestMove::equal_equals()
   *     destination's Position's location.
   **************************************/
 void TestMove::lessthan_lessthan()
-{
-   assertUnit(NOT_YET_IMPLEMENTED);
-}
+{  // setup
+   Move m1;
+   Move m2;
+   Position s1 = "b2";
+   Position d1 = "b2";
+   Position s2 = "b2";
+   Position d2 = "b4";
+   m1.source = s1;
+   m1.dest   = d1;
+   m2.source = s2;
+   m2.dest   = d2;
+   bool result = false;
+   
+   // exercise
+   result = m1 < m2;
+   
+   // verify
+   assertEquals(result, true);
+}  // teardown
 
  /*************************************
   * LESS THAN - EQUALS
@@ -391,9 +561,25 @@ void TestMove::lessthan_lessthan()
   * Output: false
   **************************************/
 void TestMove::lessthan_equals()
-{
-   assertUnit(NOT_YET_IMPLEMENTED);
-}
+{  // setup
+   Move m1;
+   Move m2;
+   Position s1 = "b2";
+   Position d1 = "b4";
+   Position s2 = "b2";
+   Position d2 = "b4";
+   m1.source = s1;
+   m1.dest   = d1;
+   m2.source = s2;
+   m2.dest   = d2;
+   bool result = true;
+   
+   // exercise
+   result = m1 < m2;
+   
+   // verify
+   assertEquals(result, false);
+}  // teardown
 
  /*************************************
   * LESS THAN - GREATAER THAN
@@ -401,6 +587,22 @@ void TestMove::lessthan_equals()
   * Output: false
   **************************************/
 void TestMove::lessthan_greaterthan()
-{
-   assertUnit(NOT_YET_IMPLEMENTED);
-}
+{  // setup
+   Move m1;
+   Move m2;
+   Position s1 = "b2";
+   Position d1 = "b4";
+   Position s2 = "b2";
+   Position d2 = "b2";
+   m1.source = s1;
+   m1.dest   = d1;
+   m2.source = s2;
+   m2.dest   = d2;
+   bool result = true;
+   
+   // exercise
+   result = m1 < m2;
+   
+   // verify
+   assertEquals(result, false);
+}  // teardown

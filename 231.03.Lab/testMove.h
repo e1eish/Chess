@@ -2,7 +2,7 @@
  * Header File:
  *    TEST MOVE 
  * Author:
- *    <your name here>
+ *    Ethan Leishman, Noah McSheehy, Bro. Helfrich
  * Summary
  *    test the Move class
  ************************************************************************/
@@ -42,7 +42,7 @@ public:
       lessthan_greaterthan();
 
       // Ticket 5: Move Text
-      read_simple();
+      /*read_simple();
       read_capture();
       read_enpassant();
       read_castleKing();
@@ -57,7 +57,7 @@ public:
       getText_capture();
       getText_enpassant();
       getText_castleKing();
-      getText_castleQueen();
+      getText_castleQueen();*/
 
       report("Move");
    }

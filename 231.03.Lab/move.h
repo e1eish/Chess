@@ -2,7 +2,7 @@
  * Header File:
  *    MOVE 
  * Author:
- *    <your name here>
+ *    Ethan Leishman, Noah McSheehy, Bro. Helfrich
  * Summary:
  *    Everything we need to know about a single chess move
  ************************************************************************/
@@ -31,11 +31,55 @@ public:
 
    // constructor
    Move();
+   bool operator == (const Move & rhs) const { return source == rhs.source && dest == rhs.dest; }
+   bool operator <  (const Move & rhs) const { return dest <  rhs.dest; }
 
 
 private:
-   char letterFromPieceType(PieceType pt)     const { return 'z';   }
-   PieceType pieceTypeFromLetter(char letter) const { return SPACE; }
+   char letterFromPieceType(PieceType pt)     const
+   {
+      switch(pt)
+      {
+         case SPACE:
+            return ' ';
+         case KING:
+            return 'k';
+         case QUEEN:
+            return 'q';
+         case ROOK:
+            return 'r';
+         case BISHOP:
+            return 'b';
+         case KNIGHT:
+            return 'n';
+         case PAWN:
+            return 'p';
+         case INVALID:
+            return 'z';
+      }
+   }
+   PieceType pieceTypeFromLetter(char letter) const
+   {
+      switch(letter)
+      {
+         case ' ':
+            return SPACE;
+         case 'k':
+            return KING;
+         case 'q':
+            return QUEEN;
+         case 'r':
+            return ROOK;
+         case 'b':
+            return BISHOP;
+         case 'n':
+            return KNIGHT;
+         case 'p':
+            return PAWN;
+         default:
+            return INVALID;
+      }
+   }
 
 
 

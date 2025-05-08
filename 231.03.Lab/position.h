@@ -85,7 +85,14 @@ public:
    // Text:    The Position class can work with textual coordinates,
    //          such as "d4"
    
-   Position(const char * s) : colRow(0x99) {   }
+   Position(const char * s)
+   {
+      int col = *s - 'a';
+      s++;
+      int row = *s - '1';
+      s++;
+      set(col, row);
+   }
    const Position & operator =  (const char     * rhs)
    {
       int col = *rhs - 'a';
@@ -139,9 +146,17 @@ public:
    //           offsets from a given location. This helps pieces move
    //           on the chess board.
    Position(const Position & rhs, const Delta & delta) : colRow(-1) {  }
-   void adjustRow(int dRow)   { }
-   void adjustCol(int dCol)   { }
-   const Position & operator += (const Delta & rhs) { return *this; }
+   void adjustRow(int dRow)   { colRow += dRow; setInvalid();      }
+   void adjustCol(int dCol)   { colRow += dCol * 16; setInvalid(); }
+   const Position & operator += (const Delta & rhs)
+   {
+      if (isValid())
+      {
+         adjustCol(rhs.dCol);
+         adjustRow(rhs.dRow);
+      }
+      return *this;
+   }
    Position operator + (const Delta & rhs) const { return *this; }
 
 private:

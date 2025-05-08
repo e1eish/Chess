@@ -2,7 +2,7 @@
  * Source File:
  *    MOVE 
  * Author:
- *    <your name here>
+ *    Ethan Leishman, Noah McSheehy, Bro. Helfrich
  * Summary:
  *    Everything we need to know about a single chess move
  ************************************************************************/
