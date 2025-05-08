@@ -75,17 +75,17 @@ public:
       setXY_invalidYMax();
 
       // Ticket 2: Position Text
-      /*set_text();
-      set_string();*/
+      set_text();
+      set_string();
        
       // Ticket 3: Position Movement
-      /*adjust_addColumn();
+      adjust_addColumn();
       adjust_addRow();
       adjust_offRight();
       adjust_offTop();
       adjust_offLeft();
       adjust_offBottom();
-      adjust_invalid();*/
+      adjust_invalid();
       
       report("Position");
    }

@@ -86,8 +86,27 @@ public:
    //          such as "d4"
    
    Position(const char * s) : colRow(0x99) {   }
-   const Position & operator =  (const char     * rhs) { return *this; }
-   const Position & operator =  (const string   & rhs) { return *this; }
+   const Position & operator =  (const char     * rhs)
+   {
+      int col = *rhs - 'a';
+      rhs++;
+      int row = *rhs - '1';
+      rhs++;
+      set(col, row);
+      
+      return *this;
+   }
+   const Position & operator =  (const string   & rhs)
+   {
+      string::const_iterator it = rhs.cbegin();
+      int col = *it - 'a';
+      it++;
+      int row = *it - '1';
+      it++;
+      set(col, row);
+      
+      return *this;
+   }
 
    
    // Pixels:    The Position class can work with screen coordinates,
