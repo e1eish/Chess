@@ -2,7 +2,7 @@
  * Source File:
  *    POSITION
  * Author:
- *    <your name here>
+ *    Ethan Leishman, Noah McSheehy, Bro. Helfrich
  * Summary:
  *    The position of a piece, the cursor, or a possible move on a chess board
  ************************************************************************/
