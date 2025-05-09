@@ -31,8 +31,56 @@ public:
 
    // constructor
    Move();
+   Move(const string & rhs) { *this = rhs; }
    bool operator == (const Move & rhs) const { return source == rhs.source && dest == rhs.dest; }
    bool operator <  (const Move & rhs) const { return dest <  rhs.dest; }
+   const Move & operator = (const string & rhs)
+   {
+      text = rhs;
+      source = rhs.substr(0,2);
+      dest   = rhs.substr(2,4);
+      if (rhs.length() == 5)
+      {
+         if (rhs[4] == 'c')
+            moveType = CASTLE_KING;
+         else if (rhs[4] == 'C')
+            moveType = CASTLE_QUEEN;
+         else if (rhs[4] == 'E')
+         {
+            moveType = ENPASSANT;
+            capture = PAWN;
+         }
+         else
+         {
+            capture = pieceTypeFromLetter(rhs[4]);
+            moveType = MOVE;
+         }
+      }
+      else
+         moveType = MOVE;
+      return *this;
+   }
+   
+   void read(const string & s) { *this = s; }
+   string getText()
+   {
+      string moveString;
+      moveString.push_back(source.getCol() + 'a');
+      moveString.push_back(source.getRow() + '1');
+      moveString.push_back(dest.getCol() + 'a');
+      moveString.push_back(dest.getRow() + '1');
+      if (moveType == ENPASSANT)
+         moveString.push_back('E');
+      else if (moveType == CASTLE_KING)
+         moveString.push_back('c');
+      else if (moveType == CASTLE_QUEEN)
+         moveString.push_back('C');
+      else if (capture)
+         if (capture != INVALID && capture != SPACE)
+            moveString.push_back(letterFromPieceType(capture));
+      
+      return moveString;
+   }
 
 
 private:
