@@ -2,7 +2,7 @@
  * Source File:
  *    BOARD
  * Author:
- *    <your name here>
+ *    Ethan Leishman, Noah McSheehy, Bro. Helfrich
  * Summary:
  *    A collection of pieces and the state of the board
  ************************************************************************/
@@ -23,11 +23,11 @@ Space space;
 ***********************************************/
 const Piece& Board::operator [] (const Position& pos) const
 {
-   return space;
+   return *board[pos.getCol()][pos.getRow()];
 }
 Piece& Board::operator [] (const Position& pos)
 {
-   return space;
+   return *board[pos.getCol()][pos.getRow()];
 }
 
 
