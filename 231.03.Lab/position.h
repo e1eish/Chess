@@ -1,4 +1,4 @@
-/***********************************************************************
+﻿/***********************************************************************
  * Header File:
  *    POSITION
  * Author:
@@ -46,16 +46,23 @@ public:
 
    // Position :    The Position class can work with other positions,
    //               Allowing for comparisions, copying, etc.
-   Position(const Position & rhs) {              }
-   Position() : colRow(0x99)      {              }
+   Position(const Position& rhs) : colRow(rhs.colRow) {   }
+   Position() : colRow(0x99)      {                       }
    bool isInvalid() const         { return colRow & 0x88; }
    bool isValid()   const         { return !isInvalid();  }
    void setValid()                { colRow = 0x00;        }
    void setInvalid()
    {
-      if (isInvalid())
-         colRow = 0xff;
+      const bool colBad = (colRow & 0x80) != 0;
+      const bool rowBad = (colRow & 0x08) != 0;
+
+      if (colBad)
+         colRow = 0xFF;
+      else if (rowBad)
+         colRow = (colRow & 0xF0) | 0x0F;
    }
+
+
    bool operator <  (const Position & rhs) const { return colRow <  rhs.colRow; }
    bool operator == (const Position & rhs) const { return colRow == rhs.colRow; }
    bool operator != (const Position & rhs) const { return colRow != rhs.colRow; }
@@ -80,7 +87,11 @@ public:
    virtual int getRow() const             { return (isInvalid() ? -1 : (int)((colRow & 0x0f) >> 0)); }
    void setRow(int r)                     { colRow = getCol() * 16 + r; setInvalid();                }
    void setCol(int c)                     { colRow = c * 16 + getRow(); setInvalid();                }
-   void set(int c, int r)                 { colRow = c * 16 + r;        setInvalid();                }
+   void set(int c, int r)                 
+   {
+      colRow = (uint8_t)((c << 4) | (r & 0x0F));
+      setInvalid();                
+   }
 
    // Text:    The Position class can work with textual coordinates,
    //          such as "d4"
@@ -129,8 +140,12 @@ public:
    }
    void setXY(double x, double y)
    {
-      set(    (int)(x / getSquareWidth ()) - 1,
-          8 - (int)(y / getSquareHeight())   );
+      int c = (int)(x / squareWidth) - 1;
+      int r = 8 - (int)(y / squareHeight);
+
+      colRow = (uint8_t)((c << 4) | (r & 0x0F));
+
+      setInvalid();
    }
    double getSquareWidth()  const { return squareWidth;  }
    double getSquareHeight() const { return squareHeight; }
