@@ -2,7 +2,7 @@
  * Header File:
  *    BOARD 
  * Author:
- *    <your name here>
+ *    Ethan Leishman, Noah McSheehy, Bro. Helfrich
  * Summary:
  *    A collection of pieces and the state of the board
  ************************************************************************/
@@ -42,8 +42,8 @@ class Board
 public:
 
    // getters
-   virtual int  getCurrentMove() const { return -99;      }
-   virtual bool whiteTurn()      const { return false;  }
+   virtual int  getCurrentMove() const { return numMoves;      }
+   virtual bool whiteTurn()      const { return numMoves % 2 == 0;  }
    virtual void display(const Position& posHover, const Position& posSelect) const {}
    virtual const Piece& operator [] (const Position& pos) const;
 
@@ -52,7 +52,7 @@ public:
    virtual Piece& operator [] (const Position& pos);
 
 protected:
-   int numMoves;
+   int numMoves = 0;
    Piece * board[8][8];    // the board of chess pieces
 };
 
@@ -65,7 +65,12 @@ class BoardDummy : public Board
 {
    friend TestBoard; 
 public:
-   BoardDummy()                                           {                }
+   BoardDummy()
+   {
+      for (int i = 0; i < 8; i++)
+         for (int j = 0; j < 8; j++)
+            board[i][j] = nullptr;
+         }
    ~BoardDummy()                                          {                }
 
    void display(const Position& posHover,
