@@ -57,12 +57,16 @@ public:
       const bool rowBad = (colRow & 0x08) != 0;
 
       if (colBad)
+      {
          colRow = 0xFF;
+      }
       else if (rowBad)
+      {
          colRow = (colRow & 0xF0) | 0x0F;
+      }
    }
 
-
+   // Comparison operators
    bool operator <  (const Position & rhs) const { return colRow <  rhs.colRow; }
    bool operator == (const Position & rhs) const { return colRow == rhs.colRow; }
    bool operator != (const Position & rhs) const { return colRow != rhs.colRow; }
@@ -70,8 +74,8 @@ public:
    
    // Location : The Position class can work with locations, which
    //            are 0...63 where we start in row 0, then row 1, etc.
-   Position(int location) : colRow(0x99) { }
-   int getLocation() const               { return getRow() * 8 + getCol();     }
+   Position(int location) : colRow(0x99){ setLocation(location); }
+   int getLocation() const { return getRow() * 8 + getCol(); }
    void setLocation(int location)
    {
       int c = location % 8;
@@ -79,7 +83,6 @@ public:
       set(c, r);
    }
 
-   
    // Row/Col : The position class can work with row/column,
    //           which are 0..7 and 0...7
    Position(int c, int r)                 { set(c, r);                                               }
@@ -95,34 +98,24 @@ public:
 
    // Text:    The Position class can work with textual coordinates,
    //          such as "d4"
-   
-   Position(const char * s)
+   Position(const char* s)
    {
-      int col = *s - 'a';
-      s++;
+      int col = *s - 'a'; ++s;
       int row = *s - '1';
-      s++;
       set(col, row);
    }
-   const Position & operator =  (const char     * rhs)
+   const Position& operator =  (const char* rhs)
    {
-      int col = *rhs - 'a';
-      rhs++;
-      int row = *rhs - '1';
-      rhs++;
+      int col = rhs[0] - 'a';
+      int row = rhs[1] - '1';
       set(col, row);
-      
       return *this;
    }
-   const Position & operator =  (const string   & rhs)
+   const Position& operator =  (const string& rhs)
    {
-      string::const_iterator it = rhs.cbegin();
-      int col = *it - 'a';
-      it++;
-      int row = *it - '1';
-      it++;
+      int col = rhs[0] - 'a';
+      int row = rhs[1] - '1';
       set(col, row);
-      
       return *this;
    }
 
@@ -160,10 +153,25 @@ public:
    // Delta:    The Position class can work with deltas, which are
    //           offsets from a given location. This helps pieces move
    //           on the chess board.
-   Position(const Position & rhs, const Delta & delta) : colRow(-1) {  }
-   void adjustRow(int dRow)   { colRow += dRow; setInvalid();      }
-   void adjustCol(int dCol)   { colRow += dCol * 16; setInvalid(); }
-   const Position & operator += (const Delta & rhs)
+   void adjustRow(int dRow)
+   {
+      int c = getCol();
+      int r = getRow() + dRow;
+      if (r < 0 || r > 7)
+         colRow = 0xFF;
+      else
+         colRow = (uint8_t)((c << 4) | (r & 0x0F));
+   }
+   void adjustCol(int dCol)
+   {
+      int c = getCol() + dCol;
+      int r = getRow();
+      if (c < 0 || c > 7)
+         colRow = 0xFF;
+      else
+         colRow = (uint8_t)((c << 4) | (r & 0x0F));
+   }
+   const Position& operator += (const Delta& rhs)
    {
       if (isValid())
       {
@@ -172,17 +180,21 @@ public:
       }
       return *this;
    }
-   Position operator + (const Delta & rhs) const { return *this; }
+   Position operator + (const Delta& rhs) const
+   {
+      Position tmp = *this;
+      tmp += rhs;
+      return tmp;
+   }
 
 private:
-   void set(uint8_t colRowNew) { }
-   
    uint8_t colRow;
    static double squareWidth;
    static double squareHeight;
 };
 
+ostream& operator << (ostream& out, const Position& pos);
+istream& operator >> (istream& in, Position& pos);
 
 ostream & operator << (ostream & out, const Position & pos);
 istream & operator >> (istream & in,  Position & pos);
-      
