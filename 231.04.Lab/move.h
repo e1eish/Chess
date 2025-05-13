@@ -1,8 +1,8 @@
 /***********************************************************************
  * Header File:
- *    MOVE
+ *    MOVE 
  * Author:
- *    <your name here>
+ *    Ethan Leishman, Noah McSheehy, Bro. Helfrich
  * Summary:
  *    Everything we need to know about a single chess move
  ************************************************************************/
@@ -31,16 +31,108 @@ public:
 
    // constructor
    Move();
-   Move(const string & rhs) {}
-   bool operator<(const Move & rhs) const { return true; }
-   bool operator==(const Move& rhs) const { return true; }
-   void read(const string & rhs) {}
-   string getText() const { return std::string(""); }
+   Move(const string & rhs) { *this = rhs; }
+   bool operator == (const Move & rhs) const { return source == rhs.source && dest == rhs.dest; }
+   bool operator <  (const Move & rhs) const { return dest <  rhs.dest; }
+   const Move & operator = (const string & rhs)
+   {
+      text = rhs;
+      source = rhs.substr(0,2);
+      dest   = rhs.substr(2,4);
+      if (rhs.length() == 5)
+      {
+         if (rhs[4] == 'c')
+            moveType = CASTLE_KING;
+         else if (rhs[4] == 'C')
+            moveType = CASTLE_QUEEN;
+         else if (rhs[4] == 'E')
+         {
+            moveType = ENPASSANT;
+            capture = PAWN;
+         }
+         else
+         {
+            capture = pieceTypeFromLetter(rhs[4]);
+            moveType = MOVE;
+         }
+      }
+      else
+         moveType = MOVE;
+      return *this;
+   }
+   
+   void read(const string & s) { *this = s; }
+   string getText()
+   {
+      string moveString;
+      moveString.push_back(source.getCol() + 'a');
+      moveString.push_back(source.getRow() + '1');
+      moveString.push_back(dest.getCol() + 'a');
+      moveString.push_back(dest.getRow() + '1');
+      if (moveType == ENPASSANT)
+         moveString.push_back('E');
+      else if (moveType == CASTLE_KING)
+         moveString.push_back('c');
+      else if (moveType == CASTLE_QUEEN)
+         moveString.push_back('C');
+      else if (capture)
+         if (capture != INVALID && capture != SPACE)
+            moveString.push_back(letterFromPieceType(capture));
+      
+      return moveString;
+   }
+   
+   // setters
+   void setSource(const Position & pos) { source = pos; text = getText(); }
+   void setDest(const Position & pos)   { dest = pos;   text = getText(); }
+   void setCapture(const PieceType pt)  { capture = pt; text = getText(); }
 
 
 private:
-   char letterFromPieceType(PieceType pt)     const { return 'z'; }
-   PieceType pieceTypeFromLetter(char letter) const { return SPACE; }
+   char letterFromPieceType(PieceType pt)     const
+   {
+      switch(pt)
+      {
+         case SPACE:
+            return ' ';
+         case KING:
+            return 'k';
+         case QUEEN:
+            return 'q';
+         case ROOK:
+            return 'r';
+         case BISHOP:
+            return 'b';
+         case KNIGHT:
+            return 'n';
+         case PAWN:
+            return 'p';
+         case INVALID:
+            return 'z';
+      }
+   }
+   PieceType pieceTypeFromLetter(char letter) const
+   {
+      switch(letter)
+      {
+         case ' ':
+            return SPACE;
+         case 'k':
+            return KING;
+         case 'q':
+            return QUEEN;
+         case 'r':
+            return ROOK;
+         case 'b':
+            return BISHOP;
+         case 'n':
+            return KNIGHT;
+         case 'p':
+            return PAWN;
+         default:
+            return INVALID;
+      }
+   }
 
 
 

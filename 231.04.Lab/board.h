@@ -46,8 +46,8 @@ public:
    virtual ~Board()   {  }
 
    // getters
-   virtual int  getCurrentMove() const { return -99;      }
-   virtual bool whiteTurn()      const { return false;  }
+   virtual int  getCurrentMove() const { return numMoves;           }
+   virtual bool whiteTurn()      const { return numMoves % 2 == 0;  }
    virtual void display(const Position& posHover, const Position& posSelect) const;
    virtual const Piece& operator [] (const Position& pos) const;
 
@@ -61,7 +61,7 @@ protected:
    void  assertBoard();
 
    Piece * board[8][8];    // the board of chess pieces
-   int numMoves;
+   int numMoves = 0;
 
    ogstream* pgout;
 };

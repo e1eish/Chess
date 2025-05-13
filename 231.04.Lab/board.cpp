@@ -50,11 +50,36 @@ Space space(0,0);
 ***********************************************/
 const Piece& Board::operator [] (const Position& pos) const
 {
-   return space;
+   assert(pos.getCol() > 0 && pos.getCol() < 8);
+   assert(pos.getRow() > 0 && pos.getRow() < 8);
+//   Piece * p = board[pos.getCol()][pos.getRow()];
+//   if (p != nullptr)
+//      return *p;
+//   else
+//   {
+//      Space * s;
+//      s = new Space(pos.getCol(), pos.getRow());
+//      return *s;
+//   }
+//   if (pos.isInvalid())
+//   {
+//      Space * s;
+//      s = new Space(pos.getCol(), pos.getRow());
+//      return *s;
+//   }
+   if (pos.isValid())
+      if (board[pos.getCol()][pos.getRow()] != nullptr)
+         return *board[pos.getCol()][pos.getRow()];
+      else
+         return Space(pos.getCol(), pos.getRow());
+   else
+      return PieceDerived(pos, false);
 }
 Piece& Board::operator [] (const Position& pos)
 {
-   return space;
+   assert(pos.getCol() > 0 && pos.getCol() < 8);
+   assert(pos.getRow() > 0 && pos.getRow() < 8);
+   return *board[pos.getCol()][pos.getRow()];
 }
 
  /***********************************************
