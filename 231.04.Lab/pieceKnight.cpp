@@ -31,7 +31,6 @@ void Knight::getMoves(set <Move>& moves, const Board& board) const
    Position p;
    Move m;
    const Piece * piece;
-   PieceType pt;
    CR directions[8] =
    {
             {-1,  2}, { 1,  2},
@@ -44,7 +43,6 @@ void Knight::getMoves(set <Move>& moves, const Board& board) const
       r = position.getRow() + directions[i].row;
       c = position.getCol() + directions[i].col;
       p = Position(c,r);
-//      pt = piece->getType();
       if (p.isValid())
       {
          piece = &board[p];
@@ -52,7 +50,7 @@ void Knight::getMoves(set <Move>& moves, const Board& board) const
          {
             m.setSource(position);
             m.setDest(Position(c,r));
-            m.setCapture(piece->getType());
+            m.setCapture(SPACE);
             moves.insert(m);
          }
          else if (!fWhite && piece->isWhite())

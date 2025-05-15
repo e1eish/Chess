@@ -28,6 +28,7 @@ public:
 
    friend TestMove;
    friend TestBoard;
+   friend class TestKnight;
 
    // constructor
    Move();
