@@ -67,13 +67,13 @@ const Piece& Board::operator [] (const Position& pos) const
 //      s = new Space(pos.getCol(), pos.getRow());
 //      return *s;
 //   }
-   if (pos.isValid())
-      if (board[pos.getCol()][pos.getRow()] != nullptr)
-         return *board[pos.getCol()][pos.getRow()];
-      else
-         return Space(pos.getCol(), pos.getRow());
-   else
-      return PieceDerived(pos, false);
+//   if (pos.isValid())
+//      if (board[pos.getCol()][pos.getRow()] != nullptr)
+   return *(board[pos.getCol()][pos.getRow()]);
+
+   //Space s(pos.getCol(), pos.getRow());
+   //s = new Space(pos.getCol(), pos.getRow());
+   //return space;
 }
 Piece& Board::operator [] (const Position& pos)
 {
