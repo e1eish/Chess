@@ -70,8 +70,8 @@ public:
    // setter
    virtual void setLastMove(int currentMove)
    {
+      ++nMoves;
       lastMove = currentMove;
-      nMoves++;
    }
 
    // overwritten by the various pieces

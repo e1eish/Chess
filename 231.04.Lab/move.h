@@ -87,6 +87,11 @@ public:
    void setSource(const Position & pos) { source = pos; text = getText(); }
    void setDest(const Position & pos)   { dest = pos;   text = getText(); }
    void setCapture(const PieceType pt)  { capture = pt; text = getText(); }
+   
+   // getters
+   const Position & getSource()  const { return source;  }
+   const Position & getDest()    const { return dest;    }
+   PieceType  getCapture() const { return capture; }
 
 
 private:

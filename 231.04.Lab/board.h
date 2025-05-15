@@ -61,6 +61,7 @@ protected:
    void  assertBoard();
 
    Piece * board[8][8];    // the board of chess pieces
+   Piece * pSpace;
    int numMoves = 0;
 
    ogstream* pgout;
