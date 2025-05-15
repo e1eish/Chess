@@ -38,7 +38,13 @@ void Board::reset(bool fFree)
    // free everything
    for (int r = 0; r < 8; r++)
       for (int c = 0; c < 8; c++)
-         board[c][r] = nullptr;
+      {
+         if (!fFree)
+            board[c][r] = pSpace;
+         else
+            board[c][r] = nullptr;
+      }
+   
    Knight wKnight1(Position("b1"), false /*white*/);
    Knight wKnight2(Position("g1"), false /*white*/);
    Knight bKnight1(Position("b8"), true  /*black*/);
@@ -89,6 +95,7 @@ void Board::display(const Position & posHover, const Position & posSelect) const
  ************************************************/
 Board::Board(ogstream* pgout, bool noreset) : pgout(pgout), numMoves(0)
 {
+   pSpace = new Space(0,0);
    if (!noreset)
       reset(false /*fFree*/);
    else
@@ -129,7 +136,7 @@ void Board::move(const Move & move)
 {  
    (board[move.getSource().getCol()][move.getSource().getRow()])->setLastMove(numMoves);
    board[move.getDest().getCol()][move.getDest().getRow()] = board[move.getSource().getCol()][move.getSource().getRow()];
-   board[move.getSource().getCol()][move.getSource().getRow()] = nullptr;
+   board[move.getSource().getCol()][move.getSource().getRow()] = pSpace;
    numMoves++;
 }
 
