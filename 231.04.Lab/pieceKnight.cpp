@@ -2,7 +2,7 @@
  * Source File:
  *    KNIGHT
  * Author:
- *    <your name here>
+ *    Ethan Leishman, Noah McSheehy, Bro. Helfrich
  * Summary:
  *    The knight class
  ************************************************************************/
@@ -17,7 +17,7 @@
  ***************************************************/
 void Knight::display(ogstream* pgout) const
 {
-   pgout->drawKnight(this->position, this->fWhite);
+   pgout->drawKnight(position, fWhite);
 }
 
 
@@ -43,24 +43,13 @@ void Knight::getMoves(set <Move>& moves, const Board& board) const
       r = position.getRow() + directions[i].row;
       c = position.getCol() + directions[i].col;
       p = Position(c,r);
+      
       if (p.isValid())
       {
          piece = &board[p];
-         if (piece->getType() == SPACE)
-         {
-            m.setSource(position);
-            m.setDest(Position(c,r));
-            m.setCapture(SPACE);
-            moves.insert(m);
-         }
-         else if (!fWhite && piece->isWhite())
-         {
-            m.setSource(position);
-            m.setDest(Position(c,r));
-            m.setCapture(piece->getType());
-            moves.insert(m);
-         }
-         else if (fWhite && !piece->isWhite())
+         if (   (piece->getType() == SPACE)    // if the capture target is a space
+             || (!fWhite && piece->isWhite())  // or the piece is black and the capture target is white
+             || (fWhite && !piece->isWhite())) // or the piece is white and the capture target is black
          {
             m.setSource(position);
             m.setDest(Position(c,r));

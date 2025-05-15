@@ -2,7 +2,7 @@
  * Source File:
  *    BOARD 
  * Author:
- *    <your name here>
+ *    Ethan Leishman, Noah McSheehy, Bro. Helfrich
  * Summary:
  *    A collection of pieces and a small amount of game state
  ************************************************************************/
@@ -45,10 +45,10 @@ void Board::reset(bool fFree)
             board[c][r] = nullptr;
       }
    
-   Knight wKnight1(Position("b1"), false /*white*/);
-   Knight wKnight2(Position("g1"), false /*white*/);
-   Knight bKnight1(Position("b8"), true  /*black*/);
-   Knight bKnight2(Position("g8"), true  /*black*/);
+   board[1][0] = new Knight(1,0, false /*white*/);
+   board[6][0] = new Knight(6,0, false /*white*/);
+   board[1][7] = new Knight(1,7, true  /*black*/);
+   board[6][7] = new Knight(6,7, true  /*black*/);
 }
 
 // we really REALLY need to delete this.
@@ -60,7 +60,6 @@ Space space(0,0);
 ***********************************************/
 const Piece& Board::operator [] (const Position& pos) const
 {
-   assert(pos.isValid());
    assert(pos.getCol() < 8 && pos.getCol() >= 0);
    assert(pos.getRow() < 8 && pos.getRow() >= 0);
    if (board[pos.getCol()][pos.getRow()])
@@ -70,7 +69,6 @@ const Piece& Board::operator [] (const Position& pos) const
 }
 Piece& Board::operator [] (const Position& pos)
 {
-   assert(pos.isValid());
    assert(pos.getCol() < 8 && pos.getCol() >= 0);
    assert(pos.getRow() < 8 && pos.getRow() >= 0);
    if (board[pos.getCol()][pos.getRow()])
@@ -85,7 +83,14 @@ Piece& Board::operator [] (const Position& pos)
  ***********************************************/
 void Board::display(const Position & posHover, const Position & posSelect) const
 {
+   pgout->drawBoard();
    
+   pgout->drawHover(posHover);
+   pgout->drawSelected(posSelect);
+   
+   for (int r = 0; r < 8; r++)
+      for (int c = 0; c < 8; c++)
+         board[c][r]->display(pgout);
 }
 
 
@@ -133,10 +138,9 @@ void Board::assertBoard()
  *   INPUT move The instructions of the move
  *********************************************/
 void Board::move(const Move & move)
-{  
-   (board[move.getSource().getCol()][move.getSource().getRow()])->setLastMove(numMoves);
-   board[move.getDest().getCol()][move.getDest().getRow()] = board[move.getSource().getCol()][move.getSource().getRow()];
-   board[move.getSource().getCol()][move.getSource().getRow()] = pSpace;
+{
+   board[move.getDest().getCol()][move.getDest().getRow()] = board[move.getSource().getCol()][move.getSource().getRow()]; // move piece to destination
+   board[move.getSource().getCol()][move.getSource().getRow()] = pSpace; // replace source with space
    numMoves++;
 }
 
