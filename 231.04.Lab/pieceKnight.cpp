@@ -44,10 +44,10 @@ void Knight::getMoves(set <Move>& moves, const Board& board) const
       r = position.getRow() + directions[i].row;
       c = position.getCol() + directions[i].col;
       p = Position(c,r);
-      piece = &board[p];
 //      pt = piece->getType();
       if (p.isValid())
       {
+         piece = &board[p];
          if (piece->getType() == SPACE)
          {
             m.setSource(position);

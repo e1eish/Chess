@@ -116,6 +116,8 @@ public:
    const Piece& operator [] (const Position& pos) const
    {
       assert(pos.isValid());
+      assert(pos.getCol() < 8 && pos.getCol() >= 0);
+      assert(pos.getRow() < 8 && pos.getRow() >= 0);
       if (board[pos.getCol()][pos.getRow()])
          return *(board[pos.getCol()][pos.getRow()]);
       else

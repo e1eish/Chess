@@ -98,7 +98,12 @@ void Board::display(const Position & posHover, const Position & posSelect) const
  ************************************************/
 Board::Board(ogstream* pgout, bool noreset) : pgout(pgout), numMoves(0)
 {
-
+   if (!noreset)
+      reset(false /**/);
+   else
+      for (int r = 0; r < 8; r++)
+         for (int c = 0; c < 8; c++)
+            board[c][r] = nullptr;
 }
 
 
