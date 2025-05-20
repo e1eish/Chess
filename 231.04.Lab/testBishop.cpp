@@ -14,23 +14,20 @@
 #include "uiDraw.h"
 #include <cassert>      
 
-
-
-
-/*************************************
- * +---a-b-c-d-e-f-g-h---+
- * |                     |
- * 8                     8
- * 7                     7
- * 6                     6
- * 5                     5
- * 4                     4
- * 3     p   p           3
- * 2      (b)            2
- * 1     p   p           1
- * |                     |
- * +---a-b-c-d-e-f-g-h---+
- **************************************/
+ /*************************************
+  * +---a-b-c-d-e-f-g-h---+
+  * |                     |
+  * 8                     8
+  * 7                     7
+  * 6                     6
+  * 5                     5
+  * 4                     4
+  * 3     p   p           3
+  * 2      (b)            2
+  * 1     p   p           1
+  * |                     |
+  * +---a-b-c-d-e-f-g-h---+
+  **************************************/
 void TestBishop::getMoves_blocked()
 {  // SETUP
    BoardEmpty board;
@@ -49,7 +46,7 @@ void TestBishop::getMoves_blocked()
    bishop.getMoves(moves, board);
 
    // VERIFY
-   assertUnit(moves.size() == 0);  // No possible moves
+   assertUnit(moves.size() == 0); // No possible moves
 
    // TEARDOWN
    board.board[2][1] = nullptr; // Bishop
@@ -94,15 +91,24 @@ void TestBishop::getMoves_slideToEnd()
 
    c2a4.source.colRow =
       c2b1.source.colRow =
+      c2b3.source.colRow =
       c2d1.source.colRow =
       c2d3.source.colRow =
       c2e4.source.colRow =
       c2f5.source.colRow =
-      c2b3.source.colRow =
       c2g6.source.colRow =
-      c2h7.source.colRow =
-      c2a4.source.colRow = 0x21;
-      
+      c2h7.source.colRow = 0x21;
+
+   c2a4.capture.colRow =
+      c2b1.capture.colRow =
+      c2b3.capture.colRow =
+      c2d1.capture.colRow =
+      c2d3.capture.colRow =
+      c2e4.capture.colRow =
+      c2f5.capture.colRow =
+      c2g6.capture.colRow =
+      c2h7.capture.colRow = SPACE;
+
    c2a4.capture =
       c2b1.capture =
       c2d1.capture =
@@ -123,7 +129,6 @@ void TestBishop::getMoves_slideToEnd()
    c2f5.dest.colRow = 0x54;
    c2g6.dest.colRow = 0x65;
    c2h7.dest.colRow = 0x76;
-   // !!!UPDATE BELOW HERE!!!
 
    // EXERCISE
    bishop.getMoves(moves, board);
@@ -140,7 +145,6 @@ void TestBishop::getMoves_slideToEnd()
    assertUnit(moves.find(c2g6) != moves.end());
    assertUnit(moves.find(c2h7) != moves.end());
 
-   
    // TEARDOWN
    board.board[2][1] = nullptr; // Bishop
 }
@@ -161,8 +165,60 @@ void TestBishop::getMoves_slideToEnd()
  * +---a-b-c-d-e-f-g-h---+
  **************************************/
 void TestBishop::getMoves_slideToBlock()
-{
-   assertUnit(NOT_YET_IMPLEMENTED);
+{  // SETUP
+   BoardEmpty board;
+   Bishop bishop(7, 7, false /*white*/); // we will reset all this.
+   bishop.fWhite = true;
+   bishop.position.colRow = 0x21;
+   board.board[2][1] = &bishop; // C2 White Bishop
+
+   White white(PAWN);
+   board.board[0][3] = &white; // A4 White Pawn
+   board.board[1][0] = &white; // B1 White Pawn
+   board.board[3][0] = &white; // D1 White Pawn
+   board.board[7][6] = &white; // H7 White Pawn
+
+   set <Move> moves;
+   Move c2b3;
+   Move c2d3;
+   Move c2e4;
+   Move c2f5;
+   Move c2g6;
+
+   c2b3.source.colRow =
+      c2d3.source.colRow =
+      c2e4.source.colRow =
+      c2f5.source.colRow =
+      c2g6.source.colRow = 0x21;
+
+   c2b3.capture.colRow =
+      c2d3.capture.colRow =
+      c2e4.capture.colRow =
+      c2f5.capture.colRow =
+      c2g6.capture.colRow = SPACE;
+
+   c2b3.dest.colRow = 0x12;
+   c2d3.dest.colRow = 0x32;
+   c2e4.dest.colRow = 0x43;
+   c2f5.dest.colRow = 0x54;
+   c2g6.dest.colRow = 0x65;
+
+   // EXERCISE
+   bishop.getMoves(moves, board);
+
+   // VERIFY
+   assertUnit(moves.size() == 5); // 5 possible moves
+   assertUnit(moves.find(c2b1) != moves.end());
+   assertUnit(moves.find(c2d3) != moves.end());
+   assertUnit(moves.find(c2e4) != moves.end());
+   assertUnit(moves.find(c2f5) != moves.end());
+   assertUnit(moves.find(c2g6) != moves.end());
+
+   // TEARDOWN
+   board.board[2][1] = nullptr; // White Bishop C2
+   board.board[1][0] = nullptr; // White Pawn   B1
+   board.board[3][0] = nullptr; // White Pawn   D1
+   board.board[7][6] = nullptr; // White Pawn   H7
 }
 
 
@@ -181,8 +237,80 @@ void TestBishop::getMoves_slideToBlock()
  * +---a-b-c-d-e-f-g-h---+
  **************************************/
 void TestBishop::getMoves_slideToCapture()
-{
-   assertUnit(NOT_YET_IMPLEMENTED);
+{  // SETUP
+   BoardEmpty board;
+   Bishop bishop(7, 7, false /*white*/); // we will reset all this.
+   bishop.fWhite = true;
+   bishop.position.colRow = 0x21;
+   board.board[2][1] = &bishop;
+   Black black(PAWN);
+   board.board[0][3] = &black; // A4 Black Pawn
+   board.board[1][0] = &black; // B1 Black Pawn
+   board.board[3][0] = &black; // D1 Black Pawn
+   board.board[7][6] = &black; // H& Black Pawn
+
+   set <Move> moves;
+
+   Move c2a4;
+   Move c2b1;
+   Move c2b3;
+   Move c2d1;
+   Move c2d3;
+   Move c2e4;
+   Move c2f5;
+   Move c2g6;
+   Move c2h7;
+
+   c2a4.source.colRow =
+      c2b1.source.colRow =
+      c2b3.source.colRow =
+      c2d1.source.colRow =
+      c2d3.source.colRow =
+      c2e4.source.colRow =
+      c2f5.source.colRow =
+      c2g6.source.colRow =
+      c2h7.source.colRow = 0x21;
+
+   c2a4.capture.colRow = PAWN;
+   c2b1.capture.colRow = PAWN;
+   c2b3.capture.colRow = SPACE;
+   c2d1.capture.colRow = PAWN;
+   c2d3.capture.colRow = SPACE;
+   c2e4.capture.colRow = SPACE;
+   c2f5.capture.colRow = SPACE;
+   c2g6.capture.colRow = SPACE;
+   c2h7.capture.colRow = PAWN;
+
+   c2a4.dest.colRow = 0x03;
+   c2b1.dest.colRow = 0x10;
+   c2b3.dest.colRow = 0x12;
+   c2d1.dest.colRow = 0x30;
+   c2d3.dest.colRow = 0x32;
+   c2e4.dest.colRow = 0x43;
+   c2f5.dest.colRow = 0x54;
+   c2g6.dest.colRow = 0x65;
+   c2h7.dest.colRow = 0x76;
+
+   // EXERCISE
+   bishop.getMoves(moves, board);
+
+   // VERIFY
+   assertUnit(moves.size() == 9); // 9 possible moves
+   assertUnit(moves.find(c2a4) != moves.end());
+   assertUnit(moves.find(c2b1) != moves.end());
+   assertUnit(moves.find(c2b3) != moves.end());
+   assertUnit(moves.find(c2d1) != moves.end());
+   assertUnit(moves.find(c2d3) != moves.end());
+   assertUnit(moves.find(c2e4) != moves.end());
+   assertUnit(moves.find(c2f5) != moves.end());
+   assertUnit(moves.find(c2g6) != moves.end());
+   assertUnit(moves.find(c2h7) != moves.end());
+
+   // TEARDOWN
+   board.board[2][1] = nullptr; // White Bishop C2
+   board.board[1][0] = nullptr; // Black Pawn   B1
+   board.board[3][0] = nullptr; // Black Pawn   D1
+   board.board[7][6] = nullptr; // Black Pawn   H7
 }
 
 
@@ -193,5 +321,13 @@ void TestBishop::getMoves_slideToCapture()
  **************************************/
 void TestBishop::getType()
 {
-   assertUnit(NOT_YET_IMPLEMENTED);
-}
+   // SETUP  
+   const Bishop bishop(7, 7, false /*white*/);
+   PieceType pt = SPACE;
+
+   // EXERCISE
+   pt = bishop.getType();
+
+   // VERIFY
+   assertUnit(pt == BISHOP);
+}  // TEARDOWN
