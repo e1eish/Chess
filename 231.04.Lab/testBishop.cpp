@@ -32,8 +32,31 @@
  * +---a-b-c-d-e-f-g-h---+
  **************************************/
 void TestBishop::getMoves_blocked()
-{
-   assertUnit(NOT_YET_IMPLEMENTED);
+{  // SETUP
+   BoardEmpty board;
+   Bishop bishop(7, 7, false /*white*/); // we will reset all this.
+   bishop.fWhite = true;
+   bishop.position.colRow = 0x21;
+   board.board[2][1] = &bishop;
+   White white(PAWN);
+   board.board[1][0] = &white; // Bottom left
+   board.board[1][2] = &white; // Upper  left
+   board.board[3][0] = &white; // Upper  Right
+   board.board[3][2] = &white; // Bottom Right
+   set <Move> moves;
+
+   // EXERCISE
+   bishop.getMoves(moves, board);
+
+   // VERIFY
+   assertUnit(moves.size() == 0);  // No possible moves
+
+   // TEARDOWN
+   board.board[2][1] = nullptr; // Bishop
+   board.board[1][0] = nullptr; // Bottom left  Pawn
+   board.board[1][2] = nullptr; // Upper  left  Pawn
+   board.board[3][0] = nullptr; // Upper  Right Pawn
+   board.board[3][2] = nullptr; // Bottom Right Pawn
 }
 
 /*************************************
@@ -51,6 +74,7 @@ void TestBishop::getMoves_blocked()
  * +---a-b-c-d-e-f-g-h---+
  **************************************/
 void TestBishop::getMoves_slideToEnd()
+   // !!!UPDATE BELOW HERE!!!
 {
    assertUnit(NOT_YET_IMPLEMENTED);
 }
