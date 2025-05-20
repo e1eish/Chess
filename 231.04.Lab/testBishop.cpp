@@ -74,9 +74,75 @@ void TestBishop::getMoves_blocked()
  * +---a-b-c-d-e-f-g-h---+
  **************************************/
 void TestBishop::getMoves_slideToEnd()
+{  // SETUP
+   BoardEmpty board;
+   Bishop bishop(7, 7, false /*white*/); // we will reset all this.
+   bishop.fWhite = true;
+   bishop.position.colRow = 0x21;
+   board.board[2][1] = &bishop;
+   set <Move> moves;
+
+   Move c2a4;
+   Move c2b1;
+   Move c2b3;
+   Move c2d1;
+   Move c2d3;
+   Move c2e4;
+   Move c2f5;
+   Move c2g6;
+   Move c2h7;
+
+   c2a4.source.colRow =
+      c2b1.source.colRow =
+      c2d1.source.colRow =
+      c2d3.source.colRow =
+      c2e4.source.colRow =
+      c2f5.source.colRow =
+      c2b3.source.colRow =
+      c2g6.source.colRow =
+      c2h7.source.colRow =
+      c2a4.source.colRow = 0x21;
+      
+   c2a4.capture.colRow =
+      c2b1.capture.colRow =
+      c2d1.capture.colRow =
+      c2d3.capture.colRow =
+      c2e4.capture.colRow =
+      c2f5.capture.colRow =
+      c2b3.capture.colRow =
+      c2g6.capture.colRow =
+      c2h7.capture.colRow =
+      c2a4.capture.colRow = SPACE;
+
+   c2a4.dest.colRow = 0x03;
+   c2b1.dest.colRow = 0x10;
+   c2b3.dest.colRow = 0x12;
+   c2d1.dest.colRow = 0x30;
+   c2d3.dest.colRow = 0x32;
+   c2e4.dest.colRow = 0x43;
+   c2f5.dest.colRow = 0x54;
+   c2g6.dest.colRow = 0x65;
+   c2h7.dest.colRow = 0x76;
    // !!!UPDATE BELOW HERE!!!
-{
-   assertUnit(NOT_YET_IMPLEMENTED);
+
+   // EXERCISE
+   bishop.getMoves(moves, board);
+
+   // VERIFY
+   assertUnit(moves.size() == 9);  // 9 possible moves
+   assertUnit(moves.find(c2a4) != moves.end());
+   assertUnit(moves.find(c2b1) != moves.end());
+   assertUnit(moves.find(c2b3) != moves.end());
+   assertUnit(moves.find(c2d1) != moves.end());
+   assertUnit(moves.find(c2d3) != moves.end());
+   assertUnit(moves.find(c2e4) != moves.end());
+   assertUnit(moves.find(c2f5) != moves.end());
+   assertUnit(moves.find(c2g6) != moves.end());
+   assertUnit(moves.find(c2h7) != moves.end());
+
+   
+   // TEARDOWN
+   board.board[2][1] = nullptr; // Bishop
 }
 
 
