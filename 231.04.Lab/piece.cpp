@@ -89,6 +89,8 @@ void Piece::getMovesSlide(CR directions[], int size, const Board& board, set <Mo
       while (p.isValid())
       {
          piece = &board[p];
+         if (piece->getType() != SPACE && piece->isWhite() == fWhite)
+            break;
          if (   (piece->getType() == SPACE)    // if the capture target is a space
              || (!fWhite && piece->isWhite())  // or the piece is black and the capture target is white
              || (fWhite && !piece->isWhite())) // or the piece is white and the capture target is black

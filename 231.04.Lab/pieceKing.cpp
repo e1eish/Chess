@@ -60,4 +60,27 @@ void King::getMoves(set <Move>& moves, const Board& board) const
       m.setMoveType(Move::CASTLE_QUEEN);
       moves.insert(m);
    }
+   
+   // black
+   // castle king-side
+   p = "h8";
+   if (fWhite == false && piece->getType() == ROOK && piece->isWhite() == false && piece->getNMoves() == 0 &&
+       board[Position("f8")].getType() == SPACE && board[Position("g8")].getType() == SPACE)
+   {
+      m.setSource(position);
+      m.setDest(Position("g8"));
+      m.setMoveType(Move::CASTLE_KING);
+      moves.insert(m);
+   }
+   // castle queen-side
+   p = "a8";
+   if (fWhite == false && piece->getType() == ROOK && piece->isWhite() == false && piece->getNMoves() == 0 &&
+       board[Position("b8")].getType() == SPACE && board[Position("c8")].getType() == SPACE &&
+       board[Position("d8")].getType() == SPACE)
+   {
+      m.setSource(position);
+      m.setDest(Position("c8"));
+      m.setMoveType(Move::CASTLE_QUEEN);
+      moves.insert(m);
+   }
 }
