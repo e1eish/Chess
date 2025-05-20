@@ -99,15 +99,15 @@ void TestBishop::getMoves_slideToEnd()
       c2g6.source.colRow =
       c2h7.source.colRow = 0x21;
 
-   c2a4.capture.colRow =
-      c2b1.capture.colRow =
-      c2b3.capture.colRow =
-      c2d1.capture.colRow =
-      c2d3.capture.colRow =
-      c2e4.capture.colRow =
-      c2f5.capture.colRow =
-      c2g6.capture.colRow =
-      c2h7.capture.colRow = SPACE;
+   c2a4.capture =
+      c2b1.capture =
+      c2b3.capture =
+      c2d1.capture =
+      c2d3.capture =
+      c2e4.capture =
+      c2f5.capture =
+      c2g6.capture =
+      c2h7.capture = SPACE;
 
    c2a4.capture =
       c2b1.capture =
@@ -191,11 +191,11 @@ void TestBishop::getMoves_slideToBlock()
       c2f5.source.colRow =
       c2g6.source.colRow = 0x21;
 
-   c2b3.capture.colRow =
-      c2d3.capture.colRow =
-      c2e4.capture.colRow =
-      c2f5.capture.colRow =
-      c2g6.capture.colRow = SPACE;
+   c2b3.capture =
+      c2d3.capture =
+      c2e4.capture =
+      c2f5.capture =
+      c2g6.capture = SPACE;
 
    c2b3.dest.colRow = 0x12;
    c2d3.dest.colRow = 0x32;
@@ -208,7 +208,7 @@ void TestBishop::getMoves_slideToBlock()
 
    // VERIFY
    assertUnit(moves.size() == 5); // 5 possible moves
-   assertUnit(moves.find(c2b1) != moves.end());
+   assertUnit(moves.find(c2b3) != moves.end());
    assertUnit(moves.find(c2d3) != moves.end());
    assertUnit(moves.find(c2e4) != moves.end());
    assertUnit(moves.find(c2f5) != moves.end());
@@ -271,15 +271,15 @@ void TestBishop::getMoves_slideToCapture()
       c2g6.source.colRow =
       c2h7.source.colRow = 0x21;
 
-   c2a4.capture.colRow = PAWN;
-   c2b1.capture.colRow = PAWN;
-   c2b3.capture.colRow = SPACE;
-   c2d1.capture.colRow = PAWN;
-   c2d3.capture.colRow = SPACE;
-   c2e4.capture.colRow = SPACE;
-   c2f5.capture.colRow = SPACE;
-   c2g6.capture.colRow = SPACE;
-   c2h7.capture.colRow = PAWN;
+   c2a4.capture = PAWN;
+   c2b1.capture = PAWN;
+   c2b3.capture = SPACE;
+   c2d1.capture = PAWN;
+   c2d3.capture = SPACE;
+   c2e4.capture = SPACE;
+   c2f5.capture = SPACE;
+   c2g6.capture = SPACE;
+   c2h7.capture = PAWN;
 
    c2a4.dest.colRow = 0x03;
    c2b1.dest.colRow = 0x10;

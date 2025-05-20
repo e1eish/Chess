@@ -37,10 +37,12 @@ void King::getMoves(set <Move>& moves, const Board& board) const
    
    // castle king-side
    Move m;
-   Position p("h1");
+   Position p;
    const Piece * piece;
-   piece = &board[p];
+   
    // white
+   p = "h1";
+   piece = &board[p];
    if (fWhite == true && piece->getType() == ROOK && piece->isWhite() == true && piece->getNMoves() == 0 &&
        board[Position("f1")].getType() == SPACE && board[Position("g1")].getType() == SPACE)
    {
@@ -51,6 +53,7 @@ void King::getMoves(set <Move>& moves, const Board& board) const
    }
    // castle queen-side
    p = "a1";
+   piece = &board[p];
    if (fWhite == true && piece->getType() == ROOK && piece->isWhite() == true && piece->getNMoves() == 0 &&
        board[Position("b1")].getType() == SPACE && board[Position("c1")].getType() == SPACE &&
        board[Position("d1")].getType() == SPACE)
@@ -64,6 +67,7 @@ void King::getMoves(set <Move>& moves, const Board& board) const
    // black
    // castle king-side
    p = "h8";
+   piece = &board[p];
    if (fWhite == false && piece->getType() == ROOK && piece->isWhite() == false && piece->getNMoves() == 0 &&
        board[Position("f8")].getType() == SPACE && board[Position("g8")].getType() == SPACE)
    {
@@ -74,6 +78,7 @@ void King::getMoves(set <Move>& moves, const Board& board) const
    }
    // castle queen-side
    p = "a8";
+   piece = &board[p];
    if (fWhite == false && piece->getType() == ROOK && piece->isWhite() == false && piece->getNMoves() == 0 &&
        board[Position("b8")].getType() == SPACE && board[Position("c8")].getType() == SPACE &&
        board[Position("d8")].getType() == SPACE)
