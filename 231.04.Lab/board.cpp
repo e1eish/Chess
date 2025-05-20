@@ -14,6 +14,10 @@
 #include "pieceSpace.h"
 #include "pieceKnight.h"
 #include "piecePawn.h"
+#include "pieceRook.h"
+#include "pieceBishop.h"
+#include "pieceQueen.h"
+#include "pieceKing.h"
 #include <cassert>
 using namespace std;
 
@@ -49,10 +53,27 @@ void Board::reset(bool fFree)
       board[c][1] = new Pawn(c,1, false /*white*/);
       board[c][6] = new Pawn(c,6, true  /*black*/);
    }
+   
+   board[0][0] = new Rook(0,0, false /*white*/);
+   board[7][0] = new Rook(7,0, false /*white*/);
+   board[0][7] = new Rook(0,7, true  /*black*/);
+   board[7][7] = new Rook(7,7, true  /*black*/);
+   
    board[1][0] = new Knight(1,0, false /*white*/);
    board[6][0] = new Knight(6,0, false /*white*/);
    board[1][7] = new Knight(1,7, true  /*black*/);
    board[6][7] = new Knight(6,7, true  /*black*/);
+   
+   board[2][0] = new Bishop(2,0, false /*white*/);
+   board[5][0] = new Bishop(5,0, false /*white*/);
+   board[2][7] = new Bishop(2,7, true  /*black*/);
+   board[5][7] = new Bishop(5,7, true  /*black*/);
+   
+   board[3][0] = new Queen(3,0, false /*white*/);
+   board[3][7] = new Queen(3,7, true  /*black*/);
+   
+   board[4][0] = new King(4,0, false /*white*/);
+   board[4][7] = new King(4,7, true  /*black*/);
    
    for (int r = 0; r < 8; r++)
       for (int c = 0; c < 8; c++)
