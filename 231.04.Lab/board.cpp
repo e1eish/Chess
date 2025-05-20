@@ -35,20 +35,26 @@ using namespace std;
  ***********************************************/
 void Board::reset(bool fFree)
 {
+   if (fFree)
+      free();
+   
    // free everything
    for (int r = 0; r < 8; r++)
       for (int c = 0; c < 8; c++)
-      {
-         if (!fFree)
-            board[c][r] = pSpace;
-         else
             board[c][r] = nullptr;
-      }
    
    board[1][0] = new Knight(1,0, false /*white*/);
    board[6][0] = new Knight(6,0, false /*white*/);
    board[1][7] = new Knight(1,7, true  /*black*/);
    board[6][7] = new Knight(6,7, true  /*black*/);
+   
+   for (int r = 0; r < 8; r++)
+      for (int c = 0; c < 8; c++)
+         if (nullptr == board[c][r])
+            board[c][r] = new Space(c, r);
+   
+   numMoves = 0;
+   assertBoard();
 }
 
 // we really REALLY need to delete this.
@@ -116,7 +122,10 @@ Board::Board(ogstream* pgout, bool noreset) : pgout(pgout), numMoves(0)
  ************************************************/
 void Board::free()
 {
-
+   for (int r = 0; r < 8; r++)
+      for (int c = 0; c < 8; c++)
+         if (board[c][r] != nullptr)
+            delete board[c][r];
 }
 
 
@@ -139,8 +148,9 @@ void Board::assertBoard()
  *********************************************/
 void Board::move(const Move & move)
 {
+   delete board[move.getDest().getCol()][move.getDest().getRow()];
    board[move.getDest().getCol()][move.getDest().getRow()] = board[move.getSource().getCol()][move.getSource().getRow()]; // move piece to destination
-   board[move.getSource().getCol()][move.getSource().getRow()] = pSpace; // replace source with space
+   board[move.getSource().getCol()][move.getSource().getRow()] = new Space(move.getSource().getCol(), move.getSource().getRow()); // replace source with space
    numMoves++;
 }
 

@@ -2,7 +2,7 @@
  * Header File:
  *    KNIGHT
  * Author:
-*    <your name here>
+*    Ethan Leishman, Noah McSheehy, Bro. Helfrich
  * Summary:
  *    The KNIGHT class
  ************************************************************************/
