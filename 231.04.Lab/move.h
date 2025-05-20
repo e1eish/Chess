@@ -30,6 +30,10 @@ public:
    friend TestBoard;
    friend class TestKnight;
    friend class TestBishop;
+   friend class TestKing;
+   friend class TestPawn;
+   friend class TestRook;
+   friend class TestQueen;
 
    // constructor
    Move();
