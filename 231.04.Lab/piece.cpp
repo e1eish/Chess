@@ -38,3 +38,70 @@ void Piece::getMoves(set <Move> & movesSet, const Board & board) const
 {
 }
 
+/************************************************
+ * PIECE : GET MOVES NO SLIDE
+ * Get moves that don't slide from directions given
+ ***********************************************/
+void Piece::getMovesNoSlide(CR directions[], int size, const Board& board, set <Move>& moves) const
+{
+   int r;
+   int c;
+   Position p;
+   Move m;
+   const Piece * piece;
+   for (int i = 0; i < size; i++)
+   {
+      r = position.getRow() + directions[i].row;
+      c = position.getCol() + directions[i].col;
+      p = Position(c,r);
+      
+      if (p.isValid())
+      {
+         piece = &board[p];
+         if (   (piece->getType() == SPACE)    // if the capture target is a space
+             || (!fWhite && piece->isWhite())  // or the piece is black and the capture target is white
+             || (fWhite && !piece->isWhite())) // or the piece is white and the capture target is black
+         {
+            m.setSource(position);
+            m.setDest(Position(c,r));
+            m.setCapture(piece->getType());
+            moves.insert(m);
+         }
+      }
+   }
+}
+/************************************************
+ * PIECE : GET MOVES SLIDE
+ * Get moves that slide from directions given
+ ***********************************************/
+void Piece::getMovesSlide(CR directions[], int size, const Board& board, set <Move>& moves) const
+{
+   int r;
+   int c;
+   Position p;
+   Move m;
+   const Piece * piece;
+   for (int i = 0; i < size; i++)
+   {
+      r = position.getRow() + directions[i].row;
+      c = position.getCol() + directions[i].col;
+      p = Position(c,r);
+      while (p.isValid())
+      {
+         piece = &board[p];
+         if (   (piece->getType() == SPACE)    // if the capture target is a space
+             || (!fWhite && piece->isWhite())  // or the piece is black and the capture target is white
+             || (fWhite && !piece->isWhite())) // or the piece is white and the capture target is black
+         {
+            m.setSource(position);
+            m.setDest(Position(c,r));
+            m.setCapture(piece->getType());
+            moves.insert(m);
+         }
+         r = position.getRow() + directions[i].row;
+         c = position.getCol() + directions[i].col;
+         p = Position(c,r);
+      }
+      
+   }
+}

@@ -147,37 +147,26 @@ void TestKnight::getMoves_capture()
    board.board[5][5] = &black;
    set <Move> moves;
    Move d5b4p;
-   d5b4p.source.colRow = 0x34;
-   d5b4p.dest.colRow = 0x13;
-   d5b4p.capture = PAWN;
    Move d5b6p;
-   d5b6p.source.colRow = 0x34;
-   d5b6p.dest.colRow = 0x15;
-   d5b6p.capture = PAWN;
    Move d5c3p;
-   d5c3p.source.colRow = 0x34;
-   d5c3p.dest.colRow = 0x22;
-   d5c3p.capture = PAWN;
    Move d5c7p;
-   d5c7p.source.colRow = 0x34;
-   d5c7p.dest.colRow = 0x26;
-   d5c7p.capture = PAWN;
    Move d5e3p;
-   d5e3p.source.colRow = 0x34;
-   d5e3p.dest.colRow = 0x42;
-   d5e3p.capture = PAWN;
    Move d5e7p;
-   d5e7p.source.colRow = 0x34;
-   d5e7p.dest.colRow = 0x46;
-   d5e7p.capture = PAWN;
    Move d5f4p;
-   d5f4p.source.colRow = 0x34;
-   d5f4p.dest.colRow = 0x53;
-   d5f4p.capture = PAWN;
    Move d5f6p;
-   d5f6p.source.colRow = 0x34;
+   d5b4p.source.colRow = d5b6p.source.colRow = d5c3p.source.colRow =
+      d5c7p.source.colRow = d5e3p.source.colRow = d5e7p.source.colRow =
+      d5f4p.source.colRow = d5f6p.source.colRow = 0x34;
+   d5b4p.capture = d5b6p.capture = d5c3p.capture = d5c7p.capture =
+      d5e3p.capture = d5e7p.capture = d5f4p.capture = d5f6p.capture = PAWN;
+   d5b4p.dest.colRow = 0x13;
+   d5b6p.dest.colRow = 0x15;
+   d5c3p.dest.colRow = 0x22;
+   d5c7p.dest.colRow = 0x26;
+   d5e3p.dest.colRow = 0x42;
+   d5e7p.dest.colRow = 0x46;
+   d5f4p.dest.colRow = 0x53;
    d5f6p.dest.colRow = 0x55;
-   d5f6p.capture = PAWN;
 
    // EXERCISE
    knight.getMoves(moves, board);

@@ -33,6 +33,16 @@ class TestBishop;
 class TestKnight;
 class TestBoard;
 
+/***********************************************
+ * Row Column
+ * Simple row/column pair
+ ************************************************/
+struct CR
+{
+   int col;
+   int row;
+};
+
 
 /***************************************************
  * PIECE
@@ -73,6 +83,9 @@ public:
       ++nMoves;
       lastMove = currentMove;
    }
+   
+   virtual void getMovesNoSlide(CR directions[], int size, const Board& board, set <Move>& moves) const;
+   virtual void getMovesSlide(  CR directions[], int size, const Board& board, set <Move>& moves) const;
 
    // overwritten by the various pieces
    virtual PieceType getType()                                    const = 0;
@@ -228,12 +241,4 @@ public:
 };
 
 
-/***********************************************
- * Row Column
- * Simple row/column pair
- ************************************************/
-struct CR
-{
-   int col;
-   int row;
-};
+
