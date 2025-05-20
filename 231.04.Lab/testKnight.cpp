@@ -218,37 +218,26 @@ void TestKnight::getMoves_free()
    board.board[3][4] = &knight;
    set <Move> moves;
    Move d5b4;
-   d5b4.source.colRow = 0x34;
-   d5b4.dest.colRow = 0x13;
-   d5b4.capture = SPACE;
    Move d5b6;
-   d5b6.source.colRow = 0x34;
-   d5b6.dest.colRow = 0x15;
-   d5b6.capture = SPACE;
    Move d5c3;
-   d5c3.source.colRow = 0x34;
-   d5c3.dest.colRow = 0x22;
-   d5c3.capture = SPACE;
    Move d5c7;
-   d5c7.source.colRow = 0x34;
-   d5c7.dest.colRow = 0x26;
-   d5c7.capture = SPACE;
    Move d5e3;
-   d5e3.source.colRow = 0x34;
-   d5e3.dest.colRow = 0x42;
-   d5e3.capture = SPACE;
    Move d5e7;
-   d5e7.source.colRow = 0x34;
-   d5e7.dest.colRow = 0x46;
-   d5e7.capture = SPACE;
    Move d5f4;
-   d5f4.source.colRow = 0x34;
-   d5f4.dest.colRow = 0x53;
-   d5f4.capture = SPACE;
    Move d5f6;
-   d5f6.source.colRow = 0x34;
+   d5b4.source.colRow = d5b6.source.colRow = d5c3.source.colRow =
+      d5c7.source.colRow = d5e3.source.colRow = d5e7.source.colRow =
+      d5f4.source.colRow = d5f6.source.colRow = 0x34;
+   d5b4.capture = d5b6.capture = d5c3.capture = d5c7.capture =
+      d5e3.capture = d5e7.capture = d5f4.capture = d5f6.capture = SPACE;
+   d5b4.dest.colRow = 0x13;
+   d5b6.dest.colRow = 0x15;
+   d5c3.dest.colRow = 0x22;
+   d5c7.dest.colRow = 0x26;
+   d5e3.dest.colRow = 0x42;
+   d5e7.dest.colRow = 0x46;
+   d5f4.dest.colRow = 0x53;
    d5f6.dest.colRow = 0x55;
-   d5f6.capture = SPACE;
 
    // EXERCISE
    knight.getMoves(moves, board);

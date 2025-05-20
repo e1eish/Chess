@@ -103,16 +103,16 @@ void TestBishop::getMoves_slideToEnd()
       c2h7.source.colRow =
       c2a4.source.colRow = 0x21;
       
-   c2a4.capture.colRow =
-      c2b1.capture.colRow =
-      c2d1.capture.colRow =
-      c2d3.capture.colRow =
-      c2e4.capture.colRow =
-      c2f5.capture.colRow =
-      c2b3.capture.colRow =
-      c2g6.capture.colRow =
-      c2h7.capture.colRow =
-      c2a4.capture.colRow = SPACE;
+   c2a4.capture =
+      c2b1.capture =
+      c2d1.capture =
+      c2d3.capture =
+      c2e4.capture =
+      c2f5.capture =
+      c2b3.capture =
+      c2g6.capture =
+      c2h7.capture =
+      c2a4.capture = SPACE;
 
    c2a4.dest.colRow = 0x03;
    c2b1.dest.colRow = 0x10;

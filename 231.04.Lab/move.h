@@ -29,6 +29,7 @@ public:
    friend TestMove;
    friend TestBoard;
    friend class TestKnight;
+   friend class TestBishop;
 
    // constructor
    Move();
@@ -84,9 +85,10 @@ public:
    }
    
    // setters
-   void setSource(const Position & pos) { source = pos; text = getText(); }
-   void setDest(const Position & pos)   { dest = pos;   text = getText(); }
-   void setCapture(const PieceType pt)  { capture = pt; text = getText(); }
+   void setSource(const Position & pos) { source = pos;  text = getText(); }
+   void setDest(const Position & pos)   { dest = pos;    text = getText(); }
+   void setCapture(const PieceType pt)  { capture = pt;  text = getText(); }
+   void setMoveType(const MoveType mt)  { moveType = mt; text = getText(); }
    
    // getters
    const Position & getSource()  const { return source;  }

@@ -26,36 +26,12 @@ void Queen::display(ogstream* pgout) const
  *********************************************/
 void Queen::getMoves(set <Move>& moves, const Board& board) const
 {
-   int r;
-   int c;
-   Position p;
-   Move m;
-   const Piece * piece;
    CR directions[8] =
    {
-            {-1,  2}, { 1,  2},
-   {-2,  1},                    { 2,  1},
-   {-2, -1},                    { 2, -1},
-            {-1, -2}, { 1, -2}
+      {-1,  1}, {0,  1}, {1,  1},
+      {-1,  0},          {1,  0},
+      {-1, -1}, {0, -1}, {1, -1}
    };
-   for (int i = 0; i < 8; i++)
-   {
-      r = position.getRow() + directions[i].row;
-      c = position.getCol() + directions[i].col;
-      p = Position(c,r);
-      
-      if (p.isValid())
-      {
-         piece = &board[p];
-         if (   (piece->getType() == SPACE)    // if the capture target is a space
-             || (!fWhite && piece->isWhite())  // or the piece is black and the capture target is white
-             || (fWhite && !piece->isWhite())) // or the piece is white and the capture target is black
-         {
-            m.setSource(position);
-            m.setDest(Position(c,r));
-            m.setCapture(piece->getType());
-            moves.insert(m);
-         }
-      }
-   }
+   
+   Piece::getMovesSlide(directions, sizeof(directions) / sizeof(directions[0]), board, moves);
 }

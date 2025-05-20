@@ -26,16 +26,11 @@ void Bishop::display(ogstream* pgout) const
  *********************************************/
 void Bishop::getMoves(set <Move>& moves, const Board& board) const
 {
-   int r;
-   int c;
-   Position p;
-   Move m;
-   const Piece * piece;
    CR directions[4] =
    {
       {-1,  1}, {1,  1},
       {-1, -1}, {1, -1}
    };
    
-   Piece::getMovesNoSlide(directions, sizeof(directions) / sizeof(directions[0]), board, moves);
+   Piece::getMovesSlide(directions, sizeof(directions) / sizeof(directions[0]), board, moves);
 }

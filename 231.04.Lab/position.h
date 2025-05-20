@@ -43,6 +43,7 @@ class Position
 {
    friend class PositionTest;
    friend class TestKnight;
+   friend class TestBishop;
 public:
 
    // Position :    The Position class can work with other positions,

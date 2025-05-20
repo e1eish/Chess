@@ -63,7 +63,7 @@ void Piece::getMovesNoSlide(CR directions[], int size, const Board& board, set <
              || (fWhite && !piece->isWhite())) // or the piece is white and the capture target is black
          {
             m.setSource(position);
-            m.setDest(Position(c,r));
+            m.setDest(p);
             m.setCapture(piece->getType());
             moves.insert(m);
          }
@@ -94,12 +94,12 @@ void Piece::getMovesSlide(CR directions[], int size, const Board& board, set <Mo
              || (fWhite && !piece->isWhite())) // or the piece is white and the capture target is black
          {
             m.setSource(position);
-            m.setDest(Position(c,r));
+            m.setDest(p);
             m.setCapture(piece->getType());
             moves.insert(m);
          }
-         r = position.getRow() + directions[i].row;
-         c = position.getCol() + directions[i].col;
+         r += directions[i].row;
+         c += directions[i].col;
          p = Position(c,r);
       }
       
