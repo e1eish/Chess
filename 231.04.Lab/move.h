@@ -89,10 +89,11 @@ public:
    }
    
    // setters
-   void setSource(const Position & pos) { source = pos;  text = getText(); }
-   void setDest(const Position & pos)   { dest = pos;    text = getText(); }
-   void setCapture(const PieceType pt)  { capture = pt;  text = getText(); }
-   void setMoveType(const MoveType mt)  { moveType = mt; text = getText(); }
+   void setSource(const Position & pos) { source   = pos; text = getText(); }
+   void setDest(const Position & pos)   { dest     = pos; text = getText(); }
+   void setCapture(const PieceType pt)  { capture  = pt;  text = getText(); }
+   void setMoveType(const MoveType mt)  { moveType = mt;  text = getText(); }
+   void setPromote(const PieceType pt)  { promote  = pt;  text = getText(); }
    
    // getters
    const Position & getSource()  const { return source;  }

@@ -83,7 +83,7 @@ void TestKnight::getMoves_blocked()
    BoardEmpty board;
    Knight knight(7, 7, false /*white*/);
    knight.fWhite = true;
-   knight.position.set(3, 4);
+   knight.position.colRow = 0x34;
    board.board[3][4] = &knight;
    White white(PAWN);
    board.board[1][3] = &white;
@@ -134,7 +134,7 @@ void TestKnight::getMoves_capture()
    BoardEmpty board;
    Knight knight(7, 7, false /*white*/);
    knight.fWhite = true;
-   knight.position.set(3, 4);
+   knight.position.colRow = 0x34;
    board.board[3][4] = &knight;
    Black black(PAWN);
    board.board[1][3] = &black;
@@ -214,7 +214,7 @@ void TestKnight::getMoves_free()
    BoardEmpty board;
    Knight knight(7, 7, false /*white*/);
    knight.fWhite = true;
-   knight.position.set(3, 4);
+   knight.position.colRow = 0x34;
    board.board[3][4] = &knight;
    set <Move> moves;
    Move d5b4;
