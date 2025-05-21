@@ -250,6 +250,14 @@ void TestPawn::getMoves_promotionBlack()
  **************************************/
 void TestPawn::getType()
 {
-   assertUnit(NOT_YET_IMPLEMENTED);
-}
+   // SETUP
+   const Pawn pawn(7, 7, false /*white*/);
+   PieceType pt = SPACE;
+
+   // EXERCISE
+   pt = pawn.getType();
+
+   // VERIFY
+   assertUnit(pt == PAWN);
+}  // TEARDOWN
 

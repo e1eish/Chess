@@ -2,7 +2,7 @@
  * Source File:
  *    TEST ROOK
  * Author:
- *    <your name here>
+ *    Ethan Leishman, Noah McSheehy, Bro. Helfrich
  * Summary:
  *    The unit tests for the rook
  ************************************************************************/
@@ -36,10 +36,10 @@ void TestRook::getMoves_blocked()
    rook.position.colRow = 0x21;
    board.board[2][1] = &rook;
    White white(PAWN);
-   board.board[1][1] = &white; // Bottom left
-   board.board[2][0] = &white; // Upper  left
-   board.board[2][2] = &white; // Upper  Right
-   board.board[3][1] = &white; // Bottom Right
+   board.board[1][1] = &white; // Left
+   board.board[2][0] = &white; // Bottom
+   board.board[2][2] = &white; // Top
+   board.board[3][1] = &white; // Right
    set <Move> moves;
 
    // EXERCISE
@@ -50,7 +50,7 @@ void TestRook::getMoves_blocked()
 
    // TEARDOWN
    board.board[2][1] = nullptr; // Rook
-   board.board[1][2] = nullptr; // Bottom left  Pawn
+   board.board[1][1] = nullptr; // Bottom left  Pawn
    board.board[2][0] = nullptr; // Upper  left  Pawn
    board.board[2][2] = nullptr; // Upper  Right Pawn
    board.board[3][1] = nullptr; // Bottom Right Pawn

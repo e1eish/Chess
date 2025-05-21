@@ -2,7 +2,7 @@
  * Source File:
  *    TEST KING
  * Author:
- *    <your name here>
+ *    Ethan Leishman, Noah McSheehy, Bro. Helfrich
  * Summary:
  *    The unit tests for the King
  ************************************************************************/
@@ -180,7 +180,15 @@ void TestKing::getMoves_whiteCastleRookMoved()
  **************************************/
 void TestKing::getType()
 {
-   assertUnit(NOT_YET_IMPLEMENTED);
-}
+   // SETUP
+   const King king(7, 7, false /*white*/);
+   PieceType pt = SPACE;
+
+   // EXERCISE
+   pt = king.getType();
+
+   // VERIFY
+   assertUnit(pt == KING);
+}  // TEARDOWN
 
 

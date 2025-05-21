@@ -27,14 +27,14 @@ using namespace std;
  *         Just fill the board with the known pieces
  *   +---a-b-c-d-e-f-g-h---+
  *   |                     |
- *   8     N         N     8
- *   7                     7
+ *   8   R N B Q K B N R   8
+ *   7   P P P P P P P P   7
  *   6                     6
  *   5                     5
  *   4                     4
  *   3                     3
- *   2                     2
- *   1     n         n     1
+ *   2   p p p p p p p p   2
+ *   1   r n b q k b n r   1
  *   |                     |
  *   +---a-b-c-d-e-f-g-h---+
  ***********************************************/
