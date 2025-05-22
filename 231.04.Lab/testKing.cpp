@@ -395,8 +395,8 @@ void TestKing::getMoves_end()
  *    *Moves 4*
  * C1 0x20 Space
  * D1 0x30 Space
- * F1 0x40 Space
- * G1 0x50 Space
+ * F1 0x50 Space
+ * G1 0x60 Space
  **************************************/
 void TestKing::getMoves_whiteCastle()
 {  // SETUP
@@ -498,8 +498,8 @@ void TestKing::getMoves_whiteCastle()
  *    *Moves 4*
  * C8 0x27 Space
  * D8 0x37 Space
- * F8 0x47 Space
- * G8 0x57 Space
+ * F8 0x57 Space
+ * G8 0x67 Space
  **************************************/
 void TestKing::getMoves_blackCastle()
 {  // SETUP
@@ -596,7 +596,7 @@ void TestKing::getMoves_blackCastle()
  *
  *    *Moves 4*
  * D1 0x30 Space
- * F1 0x40 Space
+ * F1 0x50 Space
  **************************************/
 void TestKing::getMoves_whiteCastleKingMoved()
 {  // SETUP
@@ -683,7 +683,7 @@ void TestKing::getMoves_whiteCastleKingMoved()
  *
  *    *Moves 4*
  * D1 0x30 Space
- * F1 0x40 Space
+ * F1 0x50 Space
  **************************************/
 void TestKing::getMoves_whiteCastleRookMoved()
 {  // SETUP
