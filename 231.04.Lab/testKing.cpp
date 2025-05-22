@@ -351,9 +351,9 @@ void TestKing::getMoves_end()
       a1b2.capture = SPACE;
 
    // Every Moves Destination
-   a1a2.source.colRow = 0x01;
-   a1b1.source.colRow = 0x10;
-   a1b2.source.colRow = 0x11;
+   a1a2.dest.colRow = 0x01;
+   a1b1.dest.colRow = 0x10;
+   a1b2.dest.colRow = 0x11;
 
    // EXERCISE
    king.getMoves(moves, board);
@@ -435,10 +435,10 @@ void TestKing::getMoves_whiteCastle()
       e1g1.capture = SPACE;
 
    // Every Moves Destination
-   e1c1.source.colRow = 0x20;
-   e1d1.source.colRow = 0x30;
-   e1f1.source.colRow = 0x40;
-   e1g1.source.colRow = 0x50;
+   e1c1.dest.colRow = 0x20;
+   e1d1.dest.colRow = 0x30;
+   e1f1.dest.colRow = 0x40;
+   e1g1.dest.colRow = 0x50;
 
    // EXERCISE
    king.getMoves(moves, board);
@@ -525,10 +525,10 @@ void TestKing::getMoves_blackCastle()
       e8g8.capture = SPACE;
 
    // Every Moves Destination
-   e8c8.source.colRow = 0x27;
-   e8d8.source.colRow = 0x37;
-   e8f8.source.colRow = 0x47;
-   e8g8.source.colRow = 0x57;
+   e8c8.dest.colRow = 0x27;
+   e8d8.dest.colRow = 0x37;
+   e8f8.dest.colRow = 0x47;
+   e8g8.dest.colRow = 0x57;
 
    // EXERCISE
    king.getMoves(moves, board);
@@ -608,8 +608,8 @@ void TestKing::getMoves_whiteCastleKingMoved()
       e1f1.capture = SPACE;
 
    // Every Moves Destination
-   e1d1.source.colRow = 0x30;
-   e1f1.source.colRow = 0x40;
+   e1d1.dest.colRow = 0x30;
+   e1f1.dest.colRow = 0x40;
 
    // EXERCISE
    kingHasMoved.getMoves(moves, board);
@@ -658,18 +658,27 @@ void TestKing::getMoves_whiteCastleKingMoved()
 void TestKing::getMoves_whiteCastleRookMoved()
 {  // SETUP
    BoardEmpty board;
-   King king(7, 7, false /*white*/); // we will reset all this.
+   King king(7, 7, false /*white*/);              // we will reset all this.
    king.fWhite = true;
    king.position.colRow = 0x40;
-   White whiteRookHasMoved(ROOK);
+
+   Rook rookHasMovedLeft(7, 7, false /*white*/);  // we will reset all this.
+   rookHasMovedLeft.fWhite = true;
+   rookHasMovedLeft.position.colRow = 0x00;
+
+   Rook rookHasMovedRight(7, 7, false /*white*/); // we will reset all this.
+   rookHasMovedRight.fWhite = true;
+   rookHasMovedRight.position.colRow = 0x70;
+
    White whitePawn(PAWN);
 
-   whiteRookHasMoved.nMoves = 1;
+   rookHasMovedLeft.nMoves = 1;
+   rookHasMovedRight.nMoves = 1;
 
    // Place the board
    board.board[4][0] = &king;
-   board.board[0][0] = &whiteRookHasMoved;
-   board.board[7][0] = &whiteRookHasMoved;
+   board.board[0][0] = &rookHasMovedLeft;
+   board.board[7][0] = &rookHasMovedRight;
    board.board[3][1] = &whitePawn;
    board.board[4][1] = &whitePawn;
    board.board[5][1] = &whitePawn;
@@ -688,8 +697,8 @@ void TestKing::getMoves_whiteCastleRookMoved()
       e1f1.capture = SPACE;
 
    // Every Moves Destination
-   e1d1.source.colRow = 0x30;
-   e1f1.source.colRow = 0x40;
+   e1d1.dest.colRow = 0x30;
+   e1f1.dest.colRow = 0x40;
 
    // EXERCISE
    king.getMoves(moves, board);
