@@ -46,12 +46,14 @@
 void TestKing::getMoves_blocked()
 {  // SETUP
    BoardEmpty board;
+
+   // Create Peices
    King king(7, 7, false /*white*/);
    king.fWhite = true;
    king.position.colRow = 0x34;
    White white(PAWN);
 
-   // Place the board
+   // Place pieces on the board
    board.board[3][4] = &king;
    board.board[2][3] = &white;
    board.board[2][4] = &white;
@@ -62,6 +64,7 @@ void TestKing::getMoves_blocked()
    board.board[4][4] = &white;
    board.board[4][5] = &white;
 
+   // Create a set of moves
    set <Move> moves;
 
    // EXERCISE
@@ -120,12 +123,14 @@ void TestKing::getMoves_blocked()
 void TestKing::getMoves_capture()
 {  // SETUP
    BoardEmpty board;
+
+   // Create Peices
    King king(7, 7, false /*white*/);
    king.fWhite = true;
    king.position.colRow = 0x34;
    Black black(PAWN);
 
-   // Place the board
+   // Place pieces on the board
    board.board[3][4] = &king;
    board.board[2][3] = &black;
    board.board[2][4] = &black;
@@ -234,11 +239,13 @@ void TestKing::getMoves_capture()
 void TestKing::getMoves_free()
 {  // SETUP
    BoardEmpty board;
+
+   // Create Peices
    King king(7, 7, false /*white*/);
    king.fWhite = true;
    king.position.colRow = 0x34;
 
-   // Place the board
+   // Place pieces on the board
    board.board[3][4] = &king;
 
    // Create a set of moves
@@ -327,11 +334,13 @@ void TestKing::getMoves_free()
 void TestKing::getMoves_end()
 {  // SETUP
    BoardEmpty board;
+
+   // Create Peices
    King king(7, 7, false /*white*/);
    king.fWhite = true;
    king.position.colRow = 0x00;
 
-   // Place the board
+   // Place pieces on the board
    board.board[0][0] = &king;
 
    // Create a set of moves
@@ -401,6 +410,8 @@ void TestKing::getMoves_end()
 void TestKing::getMoves_whiteCastle()
 {  // SETUP
    BoardEmpty board;
+
+   // Create Peices
    King king(7, 7, false /*white*/);
    king.fWhite = true;
    king.position.colRow = 0x40;
@@ -417,7 +428,7 @@ void TestKing::getMoves_whiteCastle()
 
    White whitePawn(PAWN);
 
-   // Place the board
+   // Place pieces on the board
    board.board[4][0] = &king;
    board.board[0][0] = &rookLeft;
    board.board[7][0] = &rookRight;
@@ -504,6 +515,8 @@ void TestKing::getMoves_whiteCastle()
 void TestKing::getMoves_blackCastle()
 {  // SETUP
    BoardEmpty board;
+
+   // Create Peices
    King king(7, 7, false /*white*/);
    king.fWhite = false; // Make Black
    king.position.colRow = 0x47;
@@ -520,7 +533,7 @@ void TestKing::getMoves_blackCastle()
 
    Black blackPawn(PAWN);
 
-   // Place the board
+   // Place pieces on the board
    board.board[4][7] = &king;
    board.board[0][7] = &rookLeft;
    board.board[7][7] = &rookRight;
@@ -601,6 +614,8 @@ void TestKing::getMoves_blackCastle()
 void TestKing::getMoves_whiteCastleKingMoved()
 {  // SETUP
    BoardEmpty board;
+
+   // Create Peices
    King kingHasMoved(7, 7, false /*white*/);
    kingHasMoved.fWhite = true;
    kingHasMoved.position.colRow = 0x40;
@@ -616,7 +631,7 @@ void TestKing::getMoves_whiteCastleKingMoved()
 
    White whitePawn(PAWN);
 
-   // Place the board
+   // Place pieces on the board
    board.board[4][0] = &kingHasMoved;
    board.board[0][0] = &rookLeft;
    board.board[7][0] = &rookRight;
@@ -688,6 +703,8 @@ void TestKing::getMoves_whiteCastleKingMoved()
 void TestKing::getMoves_whiteCastleRookMoved()
 {  // SETUP
    BoardEmpty board;
+
+   // Create Peices
    King king(7, 7, false /*white*/);             
    king.fWhite = true;
    king.position.colRow = 0x40;
@@ -705,7 +722,7 @@ void TestKing::getMoves_whiteCastleRookMoved()
    rookHasMovedLeft.nMoves = 1;
    rookHasMovedRight.nMoves = 1;
 
-   // Place the board
+   // Place pieces on the board
    board.board[4][0] = &king;
    board.board[0][0] = &rookHasMovedLeft;
    board.board[7][0] = &rookHasMovedRight;
