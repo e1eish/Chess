@@ -134,12 +134,7 @@ void Board::display(const Position & posHover, const Position & posSelect) const
 Board::Board(ogstream* pgout, bool noreset) : pgout(pgout), numMoves(0)
 {
    pSpace = new Space(0,0);
-   /*if (!noreset)
-      reset(true);
-   else
-      for (int r = 0; r < 8; r++)
-         for (int c = 0; c < 8; c++)
-            board[c][r] = nullptr;*/
+
    for (int r = 0; r < 8; r++)
       for (int c = 0; c < 8; c++)
          board[c][r] = nullptr;
@@ -294,14 +289,13 @@ void Board::move(const Move & move)
       board[dest.getCol()][dest.getRow()] = board[source.getCol()][source.getRow()]; // move piece to destination
       board[source.getCol()][source.getRow()] = space; // move space to source
    }
-   else /*if (mt != Move::ENPASSANT &&    // normal capture
-            mt != Move::CASTLE_KING &&
-            mt != Move::CASTLE_QUEEN)*/
+   else // normal capture
    {
       delete board[dest.getCol()][dest.getRow()];
       board[dest.getCol()][dest.getRow()] = board[source.getCol()][source.getRow()]; // move piece to destination
       board[move.getSource().getCol()][source.getRow()] = new Space(source.getCol(), source.getRow()); // replace source with space
    }
+   
    if (mt == Move::CASTLE_KING)
    {
       Piece * space = board[5][0];
@@ -320,35 +314,7 @@ void Board::move(const Move & move)
       delete board[dest.getCol()][dest.getRow() + diff];
       board[dest.getCol()][dest.getRow() + diff] = new Space(dest.getCol(), dest.getRow() + diff);
    }
-   /*else
-   {
-      Piece * space;
-      int diff = (whiteTurn()) ? 1 : -1;
-      switch (mt) {
-         case Move::CASTLE_KING:
-            space = board[5][0];
-            board[5][0] = board[7][0];
-            board[7][0] = space;
-            break;
-            
-         case Move::CASTLE_QUEEN:
-            space = board[3][0];
-            board[3][0] = board[0][0];
-            board[0][0] = space;
-            break;
-            
-         case Move::ENPASSANT:
-            delete board[dest.getCol()][dest.getRow() + diff];
-            board[dest.getCol()][dest.getRow() + diff] = new Space(dest.getCol(), dest.getRow() + diff);
-            break;
-            
-         default:
-            delete board[dest.getCol()][dest.getRow()];
-            board[dest.getCol()][dest.getRow()] = board[source.getCol()][source.getRow()]; // move piece to destination
-            board[move.getSource().getCol()][source.getRow()] = new Space(source.getCol(), source.getRow()); // replace source with space
-            break;
-      }
-   }*/
+
    if (move.getPromote() != SPACE && move.getPromote() != INVALID)
    {
       delete board[dest.getCol()][dest.getRow()];
@@ -375,7 +341,6 @@ void Board::move(const Move & move)
             newPiece = new Pawn(dest.getCol(), dest.getRow(), whiteTurn());
             break;
       }
-      
       
       board[dest.getCol()][dest.getRow()] = newPiece;
    }

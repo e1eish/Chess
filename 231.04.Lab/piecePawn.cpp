@@ -33,7 +33,7 @@ void Pawn::getMoves(set <Move>& moves, const Board& board) const
    const Piece * piece;
    int rowDiff;
    
-   if (fWhite)
+   if (fWhite)       // for moving forward for white and backwards for black
       rowDiff =  1;
    else
       rowDiff = -1;
@@ -67,7 +67,7 @@ void Pawn::getMoves(set <Move>& moves, const Board& board) const
    r = position.getRow() + rowDiff;
    c = position.getCol() + 1;
    p = Position(c,r);
-   for (int i = 0; i < 2; i++)
+   for (int i = 0; i < 2; i++)  // loop over to get the other side
    {
       if (p.isValid())
       {
@@ -82,7 +82,7 @@ void Pawn::getMoves(set <Move>& moves, const Board& board) const
    
    // enpassant right
    p = Position(position.getCol() + 1, position.getRow());
-   for (int i = 0; i < 2; i++)
+   for (int i = 0; i < 2; i++)  // loop over to get the other side
    {
       if (p.isValid())
       {

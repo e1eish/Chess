@@ -314,7 +314,7 @@ void TestBoard::move_pawnEnpassant()
    assertUnit(SPACE == (board.board[1][4])->getType());
    assertUnit(PieceSpy::numConstruct == 0);
    assertUnit(PieceSpy::numCopy == 0);
-   assertUnit(PieceSpy::numDelete == 1);
+   assertUnit(PieceSpy::numDelete == 2);
    assertUnit(PieceSpy::numAssign == 0);
    assertUnit(PieceSpy::numMove == 0);
 

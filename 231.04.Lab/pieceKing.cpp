@@ -45,26 +45,22 @@ void King::getMoves(set <Move>& moves, const Board& board) const
       // white
       p = "h1";
       piece = &board[p];
-      if (fWhite == true && piece->getType() == ROOK && piece->isWhite() == true && piece->getNMoves() == 0 &&
-          board[Position("f1")].getType() == SPACE && board[Position("g1")].getType() == SPACE)
+      if (fWhite == true &&
+          piece->getType() == ROOK && piece->isWhite() == true && piece->getNMoves() == 0 &&
+          board[Position("f1")].getType() == SPACE &&
+          board[Position("g1")].getType() == SPACE)
       {
-         /*m.setSource(position);
-          m.setDest(Position("g1"));
-          m.setMoveType(Move::CASTLE_KING);
-          moves.insert(m);*/
          addMove(moves, Position("g1"), Move::CASTLE_KING);
       }
       // castle queen-side
       p = "a1";
       piece = &board[p];
-      if (fWhite == true && piece->getType() == ROOK && piece->isWhite() == true && piece->getNMoves() == 0 &&
-          board[Position("b1")].getType() == SPACE && board[Position("c1")].getType() == SPACE &&
+      if (fWhite == true &&
+          piece->getType() == ROOK && piece->isWhite() == true && piece->getNMoves() == 0 &&
+          board[Position("b1")].getType() == SPACE &&
+          board[Position("c1")].getType() == SPACE &&
           board[Position("d1")].getType() == SPACE)
       {
-         /*m.setSource(position);
-          m.setDest(Position("c1"));
-          m.setMoveType(Move::CASTLE_QUEEN);
-          moves.insert(m);*/
          addMove(moves, Position("c1"), Move::CASTLE_QUEEN);
       }
       
@@ -72,26 +68,22 @@ void King::getMoves(set <Move>& moves, const Board& board) const
       // castle king-side
       p = "h8";
       piece = &board[p];
-      if (fWhite == false && piece->getType() == ROOK && piece->isWhite() == false && piece->getNMoves() == 0 &&
-          board[Position("f8")].getType() == SPACE && board[Position("g8")].getType() == SPACE)
+      if (fWhite == false &&
+          piece->getType() == ROOK && piece->isWhite() == false && piece->getNMoves() == 0 &&
+          board[Position("f8")].getType() == SPACE &&
+          board[Position("g8")].getType() == SPACE)
       {
-         /*m.setSource(position);
-          m.setDest(Position("g8"));
-          m.setMoveType(Move::CASTLE_KING);
-          moves.insert(m);*/
          addMove(moves, Position("g8"), Move::CASTLE_KING);
       }
       // castle queen-side
       p = "a8";
       piece = &board[p];
-      if (fWhite == false && piece->getType() == ROOK && piece->isWhite() == false && piece->getNMoves() == 0 &&
-          board[Position("b8")].getType() == SPACE && board[Position("c8")].getType() == SPACE &&
+      if (fWhite == false &&
+          piece->getType() == ROOK && piece->isWhite() == false && piece->getNMoves() == 0 &&
+          board[Position("b8")].getType() == SPACE &&
+          board[Position("c8")].getType() == SPACE &&
           board[Position("d8")].getType() == SPACE)
       {
-         /*m.setSource(position);
-          m.setDest(Position("c8"));
-          m.setMoveType(Move::CASTLE_QUEEN);
-          moves.insert(m);*/
          addMove(moves, Position("c8"), Move::CASTLE_QUEEN);
       }
    }
