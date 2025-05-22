@@ -46,7 +46,7 @@
 void TestKing::getMoves_blocked()
 {  // SETUP
    BoardEmpty board;
-   King king(7, 7, false /*white*/); // we will reset all this.
+   King king(7, 7, false /*white*/);
    king.fWhite = true;
    king.position.colRow = 0x34;
    White white(PAWN);
@@ -120,7 +120,7 @@ void TestKing::getMoves_blocked()
 void TestKing::getMoves_capture()
 {  // SETUP
    BoardEmpty board;
-   King king(7, 7, false /*white*/); // we will reset all this.
+   King king(7, 7, false /*white*/);
    king.fWhite = true;
    king.position.colRow = 0x34;
    Black black(PAWN);
@@ -234,7 +234,7 @@ void TestKing::getMoves_capture()
 void TestKing::getMoves_free()
 {  // SETUP
    BoardEmpty board;
-   King king(7, 7, false /*white*/); // we will reset all this.
+   King king(7, 7, false /*white*/);
    king.fWhite = true;
    king.position.colRow = 0x34;
 
@@ -327,7 +327,7 @@ void TestKing::getMoves_free()
 void TestKing::getMoves_end()
 {  // SETUP
    BoardEmpty board;
-   King king(7, 7, false /*white*/); // we will reset all this.
+   King king(7, 7, false /*white*/);
    king.fWhite = true;
    king.position.colRow = 0x00;
 
@@ -401,16 +401,24 @@ void TestKing::getMoves_end()
 void TestKing::getMoves_whiteCastle()
 {  // SETUP
    BoardEmpty board;
-   King king(7, 7, false /*white*/); // we will reset all this.
+   King king(7, 7, false /*white*/);
    king.fWhite = true;
    king.position.colRow = 0x40;
-   White whiteRook(ROOK);
+
+   Rook rookLeft(7, 7, false /*white*/); 
+   rookLeft.fWhite = true;
+   rookLeft.position.colRow = 0x00;
+
+   Rook rookRight(7, 7, false /*white*/);
+   rookRight.fWhite = true;
+   rookRight.position.colRow = 0x70;
+
    White whitePawn(PAWN);
 
    // Place the board
    board.board[4][0] = &king;
-   board.board[0][0] = &whiteRook;
-   board.board[7][0] = &whiteRook;
+   board.board[0][0] = &rookLeft;
+   board.board[7][0] = &rookRight;
    board.board[3][1] = &whitePawn;
    board.board[4][1] = &whitePawn;
    board.board[5][1] = &whitePawn;
@@ -491,16 +499,24 @@ void TestKing::getMoves_whiteCastle()
 void TestKing::getMoves_blackCastle()
 {  // SETUP
    BoardEmpty board;
-   King king(7, 7, false /*white*/); // we will reset all this.
+   King king(7, 7, false /*white*/);
    king.fWhite = false; // Make Black
    king.position.colRow = 0x47;
-   Black blackRook(ROOK);
+
+   Rook rookLeft(7, 7, false /*white*/); 
+   rookLeft.fWhite = false;
+   rookLeft.position.colRow = 0x07;
+
+   Rook rookRight(7, 7, false /*white*/);
+   rookRight.fWhite = false;
+   rookRight.position.colRow = 0x77;
+
    Black blackPawn(PAWN);
 
    // Place the board
    board.board[4][7] = &king;
-   board.board[0][7] = &blackRook;
-   board.board[7][7] = &blackRook;
+   board.board[0][7] = &rookLeft;
+   board.board[7][7] = &rookRight;
    board.board[3][6] = &blackPawn;
    board.board[4][6] = &blackPawn;
    board.board[5][6] = &blackPawn;
@@ -549,7 +565,6 @@ void TestKing::getMoves_blackCastle()
    board.board[5][6] = nullptr;
 }
 
-
 /*************************************
  * +---a-b-c-d-e-f-g-h---+
  * |                     |
@@ -579,17 +594,25 @@ void TestKing::getMoves_blackCastle()
 void TestKing::getMoves_whiteCastleKingMoved()
 {  // SETUP
    BoardEmpty board;
-   King kingHasMoved(7, 7, false /*white*/); // we will reset all this.
+   King kingHasMoved(7, 7, false /*white*/);
    kingHasMoved.fWhite = true;
    kingHasMoved.position.colRow = 0x40;
-   kingHasMoved.nMoves = 1;                  // King has moved once.
-   White whiteRook(ROOK);
+   kingHasMoved.nMoves = 1;                 
+
+   Rook rookLeft(7, 7, false /*white*/);    
+   rookLeft.fWhite = true;
+   rookLeft.position.colRow = 0x00;
+
+   Rook rookRight(7, 7, false /*white*/);
+   rookRight.fWhite = true;
+   rookRight.position.colRow = 0x70;
+
    White whitePawn(PAWN);
 
    // Place the board
    board.board[4][0] = &kingHasMoved;
-   board.board[0][0] = &whiteRook;
-   board.board[7][0] = &whiteRook;
+   board.board[0][0] = &rookLeft;
+   board.board[7][0] = &rookRight;
    board.board[3][1] = &whitePawn;
    board.board[4][1] = &whitePawn;
    board.board[5][1] = &whitePawn;
@@ -658,15 +681,15 @@ void TestKing::getMoves_whiteCastleKingMoved()
 void TestKing::getMoves_whiteCastleRookMoved()
 {  // SETUP
    BoardEmpty board;
-   King king(7, 7, false /*white*/);              // we will reset all this.
+   King king(7, 7, false /*white*/);             
    king.fWhite = true;
    king.position.colRow = 0x40;
 
-   Rook rookHasMovedLeft(7, 7, false /*white*/);  // we will reset all this.
+   Rook rookHasMovedLeft(7, 7, false /*white*/); 
    rookHasMovedLeft.fWhite = true;
    rookHasMovedLeft.position.colRow = 0x00;
 
-   Rook rookHasMovedRight(7, 7, false /*white*/); // we will reset all this.
+   Rook rookHasMovedRight(7, 7, false /*white*/);
    rookHasMovedRight.fWhite = true;
    rookHasMovedRight.position.colRow = 0x70;
 
