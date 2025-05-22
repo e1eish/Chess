@@ -2,7 +2,7 @@
  * Header File:
  *    TEST ROOK
  * Author:
- *    <your name here>
+ *    Ethan Leishman, Noah McSheehy, Bro. Helfrich
  * Summary:
  *    The unit tests for the Rook
  ************************************************************************/

@@ -2,7 +2,7 @@
  * Header File:
  *    TEST PAWN
  * Author:
- *    <your name here>
+ *    Ethan Leishman, Noah McSheehy, Bro. Helfrich
  * Summary:
  *    The unit tests for Pawn
  ************************************************************************/

@@ -35,5 +35,5 @@ void Knight::getMoves(set <Move>& moves, const Board& board) const
             {-1, -2}, { 1, -2}
    };
 
-   Piece::getMovesNoSlide(directions, sizeof(directions) / sizeof(directions[0]), board, moves);
+   getMovesNoSlide(directions, sizeof(directions) / sizeof(directions[0]), board, moves);
 }

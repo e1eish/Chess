@@ -33,8 +33,9 @@ void King::getMoves(set <Move>& moves, const Board& board) const
       {-1, -1}, {0, -1}, {1, -1}
    };
 
-   Piece::getMovesNoSlide(directions, sizeof(directions) / sizeof(directions[0]), board, moves);
+   getMovesNoSlide(directions, sizeof(directions) / sizeof(directions[0]), board, moves);
    
+   // castle
    if (nMoves == 0)
    {
       // castle king-side
