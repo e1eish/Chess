@@ -98,6 +98,16 @@ protected:
    bool fWhite;                    // which team are you on?
    Position position;              // current position of this piece
    int  lastMove;                  // last time this piece moved
+   
+   void addMove(set <Move>& moves, const Position & dest, const PieceType capture) const
+   {
+      Move m;
+      m.setSource(position);
+      m.setDest(dest);
+      m.setCapture(capture);
+      m.setMoveType(Move::MOVE);
+      moves.insert(m);
+   }
 };
 
 

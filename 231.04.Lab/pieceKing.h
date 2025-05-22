@@ -24,4 +24,13 @@ public:
    PieceType getType()            const { return KING; }
    void getMoves(set <Move>& moves, const Board& board) const;
    void display(ogstream* pgout)  const;
+private:
+   void addMove(set <Move>& moves, const Position & dest, const Move::MoveType moveType) const
+   {
+      Move m;
+      m.setSource(position);
+      m.setDest(dest);
+      m.setMoveType(moveType);
+      moves.insert(m);
+   }
 };

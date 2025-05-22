@@ -17,7 +17,7 @@
  ***************************************************/
 void Rook::display(ogstream* pgout) const
 {
-   pgout->drawRook(position, fWhite);
+   pgout->drawRook(position, !fWhite);
 }
 
 

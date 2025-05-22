@@ -17,7 +17,7 @@
  ***************************************************/
 void Queen::display(ogstream* pgout) const
 {
-   pgout->drawQueen(position, fWhite);
+   pgout->drawQueen(position, !fWhite);
 }
 
 

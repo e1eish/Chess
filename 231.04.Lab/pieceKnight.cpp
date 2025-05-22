@@ -18,7 +18,7 @@
  ***************************************************/
 void Knight::display(ogstream* pgout) const
 {
-   pgout->drawKnight(position, fWhite);
+   pgout->drawKnight(position, !fWhite);
 }
 
 

@@ -17,7 +17,7 @@
  ***************************************************/
 void King::display(ogstream* pgout) const
 {
-   pgout->drawKing(position, fWhite);
+   pgout->drawKing(position, !fWhite);
 }
 
 
@@ -46,10 +46,11 @@ void King::getMoves(set <Move>& moves, const Board& board) const
    if (fWhite == true && piece->getType() == ROOK && piece->isWhite() == true && piece->getNMoves() == 0 &&
        board[Position("f1")].getType() == SPACE && board[Position("g1")].getType() == SPACE)
    {
-      m.setSource(position);
+      /*m.setSource(position);
       m.setDest(Position("g1"));
       m.setMoveType(Move::CASTLE_KING);
-      moves.insert(m);
+      moves.insert(m);*/
+      addMove(moves, Position("g1"), Move::CASTLE_KING);
    }
    // castle queen-side
    p = "a1";
@@ -58,10 +59,11 @@ void King::getMoves(set <Move>& moves, const Board& board) const
        board[Position("b1")].getType() == SPACE && board[Position("c1")].getType() == SPACE &&
        board[Position("d1")].getType() == SPACE)
    {
-      m.setSource(position);
+      /*m.setSource(position);
       m.setDest(Position("c1"));
       m.setMoveType(Move::CASTLE_QUEEN);
-      moves.insert(m);
+      moves.insert(m);*/
+      addMove(moves, Position("c1"), Move::CASTLE_QUEEN);
    }
    
    // black
@@ -71,10 +73,11 @@ void King::getMoves(set <Move>& moves, const Board& board) const
    if (fWhite == false && piece->getType() == ROOK && piece->isWhite() == false && piece->getNMoves() == 0 &&
        board[Position("f8")].getType() == SPACE && board[Position("g8")].getType() == SPACE)
    {
-      m.setSource(position);
+      /*m.setSource(position);
       m.setDest(Position("g8"));
       m.setMoveType(Move::CASTLE_KING);
-      moves.insert(m);
+      moves.insert(m);*/
+      addMove(moves, Position("g8"), Move::CASTLE_KING);
    }
    // castle queen-side
    p = "a8";
@@ -83,9 +86,10 @@ void King::getMoves(set <Move>& moves, const Board& board) const
        board[Position("b8")].getType() == SPACE && board[Position("c8")].getType() == SPACE &&
        board[Position("d8")].getType() == SPACE)
    {
-      m.setSource(position);
+      /*m.setSource(position);
       m.setDest(Position("c8"));
       m.setMoveType(Move::CASTLE_QUEEN);
-      moves.insert(m);
+      moves.insert(m);*/
+      addMove(moves, Position("c8"), Move::CASTLE_QUEEN);
    }
 }

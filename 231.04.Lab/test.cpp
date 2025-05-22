@@ -55,7 +55,6 @@ void testRunner()
    // unit tests
    PositionTest().run();
    TestMove().run();
-   TestBoard().run();
    TestPiece().run();
    TestSpace().run();
    TestKnight().run();
@@ -64,4 +63,5 @@ void testRunner()
    TestRook().run();
    TestQueen().run();
    TestBishop().run();
+   TestBoard().run();
 }
