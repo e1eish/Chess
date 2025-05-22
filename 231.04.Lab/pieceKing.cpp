@@ -17,7 +17,7 @@
  ***************************************************/
 void King::display(ogstream* pgout) const
 {
-   pgout->drawKing(position, fWhite);
+   pgout->drawKing(position, !fWhite);
 }
 
 

@@ -937,14 +937,14 @@ void TestBoard::construct_default()
    assertUnit(BISHOP == (board.board[5][0])->getType());
    assertUnit(KNIGHT == (board.board[6][0])->getType());
    assertUnit(ROOK   == (board.board[7][0])->getType());
-//   assertUnit(true   == (board.board[0][0])->isWhite());
-//   assertUnit(true   == (board.board[1][0])->isWhite());
-//   assertUnit(true   == (board.board[2][0])->isWhite());
-//   assertUnit(true   == (board.board[3][0])->isWhite());
-//   assertUnit(true   == (board.board[4][0])->isWhite());
-//   assertUnit(true   == (board.board[5][0])->isWhite());
-//   assertUnit(true   == (board.board[6][0])->isWhite());
-//   assertUnit(true   == (board.board[7][0])->isWhite());
+   assertUnit(true   == (board.board[0][0])->isWhite());
+   assertUnit(true   == (board.board[1][0])->isWhite());
+   assertUnit(true   == (board.board[2][0])->isWhite());
+   assertUnit(true   == (board.board[3][0])->isWhite());
+   assertUnit(true   == (board.board[4][0])->isWhite());
+   assertUnit(true   == (board.board[5][0])->isWhite());
+   assertUnit(true   == (board.board[6][0])->isWhite());
+   assertUnit(true   == (board.board[7][0])->isWhite());
    
    assertUnit(PAWN == (board.board[0][1])->getType());
    assertUnit(PAWN == (board.board[1][1])->getType());
@@ -954,14 +954,14 @@ void TestBoard::construct_default()
    assertUnit(PAWN == (board.board[5][1])->getType());
    assertUnit(PAWN == (board.board[6][1])->getType());
    assertUnit(PAWN == (board.board[7][1])->getType());
-//   assertUnit(true == (board.board[0][1])->isWhite());
-//   assertUnit(true == (board.board[1][1])->isWhite());
-//   assertUnit(true == (board.board[2][1])->isWhite());
-//   assertUnit(true == (board.board[3][1])->isWhite());
-//   assertUnit(true == (board.board[4][1])->isWhite());
-//   assertUnit(true == (board.board[5][1])->isWhite());
-//   assertUnit(true == (board.board[6][1])->isWhite());
-//   assertUnit(true == (board.board[7][1])->isWhite());
+   assertUnit(true == (board.board[0][1])->isWhite());
+   assertUnit(true == (board.board[1][1])->isWhite());
+   assertUnit(true == (board.board[2][1])->isWhite());
+   assertUnit(true == (board.board[3][1])->isWhite());
+   assertUnit(true == (board.board[4][1])->isWhite());
+   assertUnit(true == (board.board[5][1])->isWhite());
+   assertUnit(true == (board.board[6][1])->isWhite());
+   assertUnit(true == (board.board[7][1])->isWhite());
    
    assertUnit(SPACE == (board.board[0][2])->getType());
    assertUnit(SPACE == (board.board[1][2])->getType());
@@ -1007,14 +1007,14 @@ void TestBoard::construct_default()
    assertUnit(PAWN  == (board.board[5][6])->getType());
    assertUnit(PAWN  == (board.board[6][6])->getType());
    assertUnit(PAWN  == (board.board[7][6])->getType());
-//   assertUnit(false == (board.board[0][6])->isWhite());
-//   assertUnit(false == (board.board[1][6])->isWhite());
-//   assertUnit(false == (board.board[2][6])->isWhite());
-//   assertUnit(false == (board.board[3][6])->isWhite());
-//   assertUnit(false == (board.board[4][6])->isWhite());
-//   assertUnit(false == (board.board[5][6])->isWhite());
-//   assertUnit(false == (board.board[6][6])->isWhite());
-//   assertUnit(false == (board.board[7][6])->isWhite());
+   assertUnit(false == (board.board[0][6])->isWhite());
+   assertUnit(false == (board.board[1][6])->isWhite());
+   assertUnit(false == (board.board[2][6])->isWhite());
+   assertUnit(false == (board.board[3][6])->isWhite());
+   assertUnit(false == (board.board[4][6])->isWhite());
+   assertUnit(false == (board.board[5][6])->isWhite());
+   assertUnit(false == (board.board[6][6])->isWhite());
+   assertUnit(false == (board.board[7][6])->isWhite());
    
    assertUnit(ROOK    == (board.board[0][7])->getType());
    assertUnit(KNIGHT  == (board.board[1][7])->getType());
@@ -1024,14 +1024,14 @@ void TestBoard::construct_default()
    assertUnit(BISHOP  == (board.board[5][7])->getType());
    assertUnit(KNIGHT  == (board.board[6][7])->getType());
    assertUnit(ROOK    == (board.board[7][7])->getType());
-//   assertUnit(false   == (board.board[0][7])->isWhite());
-//   assertUnit(false   == (board.board[1][7])->isWhite());
-//   assertUnit(false   == (board.board[2][7])->isWhite());
-//   assertUnit(false   == (board.board[3][7])->isWhite());
-//   assertUnit(false   == (board.board[4][7])->isWhite());
-//   assertUnit(false   == (board.board[5][7])->isWhite());
-//   assertUnit(false   == (board.board[6][7])->isWhite());
-//   assertUnit(false   == (board.board[7][7])->isWhite());
+   assertUnit(false   == (board.board[0][7])->isWhite());
+   assertUnit(false   == (board.board[1][7])->isWhite());
+   assertUnit(false   == (board.board[2][7])->isWhite());
+   assertUnit(false   == (board.board[3][7])->isWhite());
+   assertUnit(false   == (board.board[4][7])->isWhite());
+   assertUnit(false   == (board.board[5][7])->isWhite());
+   assertUnit(false   == (board.board[6][7])->isWhite());
+   assertUnit(false   == (board.board[7][7])->isWhite());
    
 
    // TEARDOWN

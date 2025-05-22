@@ -17,7 +17,7 @@
  ***************************************************/
 void Pawn::display(ogstream* pgout) const
 {
-   pgout->drawPawn(position, fWhite);
+   pgout->drawPawn(position, !fWhite);
 }
 
 
