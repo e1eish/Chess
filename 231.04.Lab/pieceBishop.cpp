@@ -32,5 +32,5 @@ void Bishop::getMoves(set <Move>& moves, const Board& board) const
       {-1, -1}, {1, -1}
    };
    
-   Piece::getMovesSlide(directions, sizeof(directions) / sizeof(directions[0]), board, moves);
+   getMovesSlide(directions, sizeof(directions) / sizeof(directions[0]), board, moves);
 }

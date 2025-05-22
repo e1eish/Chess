@@ -134,12 +134,18 @@ void Board::display(const Position & posHover, const Position & posSelect) const
 Board::Board(ogstream* pgout, bool noreset) : pgout(pgout), numMoves(0)
 {
    pSpace = new Space(0,0);
-   if (!noreset)
-      reset(false /*fFree*/);
+   /*if (!noreset)
+      reset(true);
    else
       for (int r = 0; r < 8; r++)
          for (int c = 0; c < 8; c++)
-            board[c][r] = nullptr;
+            board[c][r] = nullptr;*/
+   for (int r = 0; r < 8; r++)
+      for (int c = 0; c < 8; c++)
+         board[c][r] = nullptr;
+   
+   if (!noreset)
+      reset(false);
 }
 
 
@@ -175,9 +181,18 @@ void Board::assertBoard()
  *********************************************/
 void Board::move(const Move & move)
 {
-   delete board[move.getDest().getCol()][move.getDest().getRow()];
-   board[move.getDest().getCol()][move.getDest().getRow()] = board[move.getSource().getCol()][move.getSource().getRow()]; // move piece to destination
-   board[move.getSource().getCol()][move.getSource().getRow()] = new Space(move.getSource().getCol(), move.getSource().getRow()); // replace source with space
+   if (move.getCapture() == SPACE)
+   {
+      Piece * space = board[move.getDest().getCol()][move.getDest().getRow()];
+      board[move.getDest().getCol()][move.getDest().getRow()] = board[move.getSource().getCol()][move.getSource().getRow()]; // move piece to destination
+      board[move.getSource().getCol()][move.getSource().getRow()] = space; // move space to source
+   }
+   else
+   {
+      delete board[move.getDest().getCol()][move.getDest().getRow()];
+      board[move.getDest().getCol()][move.getDest().getRow()] = board[move.getSource().getCol()][move.getSource().getRow()]; // move piece to destination
+      board[move.getSource().getCol()][move.getSource().getRow()] = new Space(move.getSource().getCol(), move.getSource().getRow()); // replace source with space
+   }
    numMoves++;
 }
 
