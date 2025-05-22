@@ -98,7 +98,9 @@ public:
    // getters
    const Position & getSource()  const { return source;  }
    const Position & getDest()    const { return dest;    }
-   PieceType  getCapture() const { return capture; }
+   PieceType  getCapture()  const { return capture;  }
+   MoveType   getMoveType() const { return moveType; }
+   PieceType  getPromote()  const { return promote;  }
 
 
 private:

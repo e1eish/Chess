@@ -412,6 +412,8 @@ void TestKing::getMoves_whiteCastle()
    Rook rookRight(7, 7, false /*white*/);
    rookRight.fWhite = true;
    rookRight.position.colRow = 0x70;
+   
+   king.nMoves = rookLeft.nMoves = rookRight.nMoves = 0;
 
    White whitePawn(PAWN);
 
@@ -445,8 +447,11 @@ void TestKing::getMoves_whiteCastle()
    // Every Moves Destination
    e1c1.dest.colRow = 0x20;
    e1d1.dest.colRow = 0x30;
-   e1f1.dest.colRow = 0x40;
-   e1g1.dest.colRow = 0x50;
+   e1f1.dest.colRow = 0x50;
+   e1g1.dest.colRow = 0x60;
+   
+   e1g1.moveType = Move::CASTLE_KING;
+   e1c1.moveType = Move::CASTLE_QUEEN;
 
    // EXERCISE
    king.getMoves(moves, board);
@@ -510,6 +515,8 @@ void TestKing::getMoves_blackCastle()
    Rook rookRight(7, 7, false /*white*/);
    rookRight.fWhite = false;
    rookRight.position.colRow = 0x77;
+   
+   king.nMoves = rookLeft.nMoves = rookRight.nMoves = 0;
 
    Black blackPawn(PAWN);
 
@@ -543,8 +550,8 @@ void TestKing::getMoves_blackCastle()
    // Every Moves Destination
    e8c8.dest.colRow = 0x27;
    e8d8.dest.colRow = 0x37;
-   e8f8.dest.colRow = 0x47;
-   e8g8.dest.colRow = 0x57;
+   e8f8.dest.colRow = 0x57;
+   e8g8.dest.colRow = 0x67;
 
    // EXERCISE
    king.getMoves(moves, board);
@@ -632,7 +639,7 @@ void TestKing::getMoves_whiteCastleKingMoved()
 
    // Every Moves Destination
    e1d1.dest.colRow = 0x30;
-   e1f1.dest.colRow = 0x40;
+   e1f1.dest.colRow = 0x50;
 
    // EXERCISE
    kingHasMoved.getMoves(moves, board);
@@ -721,7 +728,7 @@ void TestKing::getMoves_whiteCastleRookMoved()
 
    // Every Moves Destination
    e1d1.dest.colRow = 0x30;
-   e1f1.dest.colRow = 0x40;
+   e1f1.dest.colRow = 0x50;
 
    // EXERCISE
    king.getMoves(moves, board);

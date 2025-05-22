@@ -168,7 +168,110 @@ void Board::free()
  *********************************************/
 void Board::assertBoard()
 {
-
+   assert(0 == numMoves);
+   assert(ROOK   == (board[0][0])->getType());
+   assert(KNIGHT == (board[1][0])->getType());
+   assert(BISHOP == (board[2][0])->getType());
+   assert(QUEEN  == (board[3][0])->getType());
+   assert(KING   == (board[4][0])->getType());
+   assert(BISHOP == (board[5][0])->getType());
+   assert(KNIGHT == (board[6][0])->getType());
+   assert(ROOK   == (board[7][0])->getType());
+   assert(true   == (board[0][0])->isWhite());
+   assert(true   == (board[1][0])->isWhite());
+   assert(true   == (board[2][0])->isWhite());
+   assert(true   == (board[3][0])->isWhite());
+   assert(true   == (board[4][0])->isWhite());
+   assert(true   == (board[5][0])->isWhite());
+   assert(true   == (board[6][0])->isWhite());
+   assert(true   == (board[7][0])->isWhite());
+   
+   assert(PAWN == (board[0][1])->getType());
+   assert(PAWN == (board[1][1])->getType());
+   assert(PAWN == (board[2][1])->getType());
+   assert(PAWN == (board[3][1])->getType());
+   assert(PAWN == (board[4][1])->getType());
+   assert(PAWN == (board[5][1])->getType());
+   assert(PAWN == (board[6][1])->getType());
+   assert(PAWN == (board[7][1])->getType());
+   assert(true == (board[0][1])->isWhite());
+   assert(true == (board[1][1])->isWhite());
+   assert(true == (board[2][1])->isWhite());
+   assert(true == (board[3][1])->isWhite());
+   assert(true == (board[4][1])->isWhite());
+   assert(true == (board[5][1])->isWhite());
+   assert(true == (board[6][1])->isWhite());
+   assert(true == (board[7][1])->isWhite());
+   
+   assert(SPACE == (board[0][2])->getType());
+   assert(SPACE == (board[1][2])->getType());
+   assert(SPACE == (board[2][2])->getType());
+   assert(SPACE == (board[3][2])->getType());
+   assert(SPACE == (board[4][2])->getType());
+   assert(SPACE == (board[5][2])->getType());
+   assert(SPACE == (board[6][2])->getType());
+   assert(SPACE == (board[7][2])->getType());
+   
+   assert(SPACE == (board[0][3])->getType());
+   assert(SPACE == (board[1][3])->getType());
+   assert(SPACE == (board[2][3])->getType());
+   assert(SPACE == (board[3][3])->getType());
+   assert(SPACE == (board[4][3])->getType());
+   assert(SPACE == (board[5][3])->getType());
+   assert(SPACE == (board[6][3])->getType());
+   assert(SPACE == (board[7][3])->getType());
+   
+   assert(SPACE == (board[0][4])->getType());
+   assert(SPACE == (board[1][4])->getType());
+   assert(SPACE == (board[2][4])->getType());
+   assert(SPACE == (board[3][4])->getType());
+   assert(SPACE == (board[4][4])->getType());
+   assert(SPACE == (board[5][4])->getType());
+   assert(SPACE == (board[6][4])->getType());
+   assert(SPACE == (board[7][4])->getType());
+   
+   assert(SPACE == (board[0][5])->getType());
+   assert(SPACE == (board[1][5])->getType());
+   assert(SPACE == (board[2][5])->getType());
+   assert(SPACE == (board[3][5])->getType());
+   assert(SPACE == (board[4][5])->getType());
+   assert(SPACE == (board[5][5])->getType());
+   assert(SPACE == (board[6][5])->getType());
+   assert(SPACE == (board[7][5])->getType());
+   
+   assert(PAWN  == (board[0][6])->getType());
+   assert(PAWN  == (board[1][6])->getType());
+   assert(PAWN  == (board[2][6])->getType());
+   assert(PAWN  == (board[3][6])->getType());
+   assert(PAWN  == (board[4][6])->getType());
+   assert(PAWN  == (board[5][6])->getType());
+   assert(PAWN  == (board[6][6])->getType());
+   assert(PAWN  == (board[7][6])->getType());
+   assert(false == (board[0][6])->isWhite());
+   assert(false == (board[1][6])->isWhite());
+   assert(false == (board[2][6])->isWhite());
+   assert(false == (board[3][6])->isWhite());
+   assert(false == (board[4][6])->isWhite());
+   assert(false == (board[5][6])->isWhite());
+   assert(false == (board[6][6])->isWhite());
+   assert(false == (board[7][6])->isWhite());
+   
+   assert(ROOK    == (board[0][7])->getType());
+   assert(KNIGHT  == (board[1][7])->getType());
+   assert(BISHOP  == (board[2][7])->getType());
+   assert(QUEEN   == (board[3][7])->getType());
+   assert(KING    == (board[4][7])->getType());
+   assert(BISHOP  == (board[5][7])->getType());
+   assert(KNIGHT  == (board[6][7])->getType());
+   assert(ROOK    == (board[7][7])->getType());
+   assert(false   == (board[0][7])->isWhite());
+   assert(false   == (board[1][7])->isWhite());
+   assert(false   == (board[2][7])->isWhite());
+   assert(false   == (board[3][7])->isWhite());
+   assert(false   == (board[4][7])->isWhite());
+   assert(false   == (board[5][7])->isWhite());
+   assert(false   == (board[6][7])->isWhite());
+   assert(false   == (board[7][7])->isWhite());
 }
 
 
@@ -181,18 +284,103 @@ void Board::assertBoard()
  *********************************************/
 void Board::move(const Move & move)
 {
-   if (move.getCapture() == SPACE)
+   Move::MoveType mt = move.getMoveType();
+   Position source   = move.getSource();
+   Position dest     = move.getDest();
+   
+   if (move.getCapture() == SPACE)  // normal move
    {
-      Piece * space = board[move.getDest().getCol()][move.getDest().getRow()];
-      board[move.getDest().getCol()][move.getDest().getRow()] = board[move.getSource().getCol()][move.getSource().getRow()]; // move piece to destination
-      board[move.getSource().getCol()][move.getSource().getRow()] = space; // move space to source
+      Piece * space = board[dest.getCol()][dest.getRow()];
+      board[dest.getCol()][dest.getRow()] = board[source.getCol()][source.getRow()]; // move piece to destination
+      board[source.getCol()][source.getRow()] = space; // move space to source
    }
-   else
+   else /*if (mt != Move::ENPASSANT &&    // normal capture
+            mt != Move::CASTLE_KING &&
+            mt != Move::CASTLE_QUEEN)*/
    {
-      delete board[move.getDest().getCol()][move.getDest().getRow()];
-      board[move.getDest().getCol()][move.getDest().getRow()] = board[move.getSource().getCol()][move.getSource().getRow()]; // move piece to destination
-      board[move.getSource().getCol()][move.getSource().getRow()] = new Space(move.getSource().getCol(), move.getSource().getRow()); // replace source with space
+      delete board[dest.getCol()][dest.getRow()];
+      board[dest.getCol()][dest.getRow()] = board[source.getCol()][source.getRow()]; // move piece to destination
+      board[move.getSource().getCol()][source.getRow()] = new Space(source.getCol(), source.getRow()); // replace source with space
    }
+   if (mt == Move::CASTLE_KING)
+   {
+      Piece * space = board[5][0];
+      board[5][0] = board[7][0];
+      board[7][0] = space;
+   }
+   if (mt == Move::CASTLE_QUEEN)
+   {
+      Piece * space = board[3][0];
+      board[3][0] = board[0][0];
+      board[0][0] = space;
+   }
+   if (mt == Move::ENPASSANT)
+   {
+      int diff = (whiteTurn()) ? 1 : -1;
+      delete board[dest.getCol()][dest.getRow() + diff];
+      board[dest.getCol()][dest.getRow() + diff] = new Space(dest.getCol(), dest.getRow() + diff);
+   }
+   /*else
+   {
+      Piece * space;
+      int diff = (whiteTurn()) ? 1 : -1;
+      switch (mt) {
+         case Move::CASTLE_KING:
+            space = board[5][0];
+            board[5][0] = board[7][0];
+            board[7][0] = space;
+            break;
+            
+         case Move::CASTLE_QUEEN:
+            space = board[3][0];
+            board[3][0] = board[0][0];
+            board[0][0] = space;
+            break;
+            
+         case Move::ENPASSANT:
+            delete board[dest.getCol()][dest.getRow() + diff];
+            board[dest.getCol()][dest.getRow() + diff] = new Space(dest.getCol(), dest.getRow() + diff);
+            break;
+            
+         default:
+            delete board[dest.getCol()][dest.getRow()];
+            board[dest.getCol()][dest.getRow()] = board[source.getCol()][source.getRow()]; // move piece to destination
+            board[move.getSource().getCol()][source.getRow()] = new Space(source.getCol(), source.getRow()); // replace source with space
+            break;
+      }
+   }*/
+   if (move.getPromote() != SPACE && move.getPromote() != INVALID)
+   {
+      delete board[dest.getCol()][dest.getRow()];
+      Piece * newPiece;
+      switch (move.getPromote())
+      {
+         case QUEEN:
+            newPiece = new Queen(dest.getCol(), dest.getRow(), whiteTurn());
+            break;
+            
+         case ROOK:
+            newPiece = new Rook(dest.getCol(), dest.getRow(), whiteTurn());
+            break;
+            
+         case BISHOP:
+            newPiece = new Bishop(dest.getCol(), dest.getRow(), whiteTurn());
+            break;
+            
+         case KNIGHT:
+            newPiece = new Knight(dest.getCol(), dest.getRow(), whiteTurn());
+            break;
+            
+         default:
+            newPiece = new Pawn(dest.getCol(), dest.getRow(), whiteTurn());
+            break;
+      }
+      
+      
+      board[dest.getCol()][dest.getRow()] = newPiece;
+   }
+   
+   
    numMoves++;
 }
 
