@@ -48,11 +48,11 @@ void Board::reset(bool fFree)
       for (int c = 0; c < 8; c++)
             board[c][r] = nullptr;
    
-//   for (int c = 0; c < 8; c++)
-//   {
-//      board[c][1] = new Pawn(c,1, true /*white*/);
-//      board[c][6] = new Pawn(c,6, false /*black*/);
-//   }
+   for (int c = 0; c < 8; c++)
+   {
+      board[c][1] = new Pawn(c,1, true /*white*/);
+      board[c][6] = new Pawn(c,6, false /*black*/);
+   }
    
    board[0][0] = new Rook(0,0, true /*white*/);
    board[7][0] = new Rook(7,0, true /*white*/);
@@ -81,7 +81,7 @@ void Board::reset(bool fFree)
             board[c][r] = new Space(c, r);
    
    numMoves = 0;
-   //assertBoard();
+   assertBoard();
 }
 
 // we really REALLY need to delete this.
@@ -294,27 +294,44 @@ void Board::move(const Move & move)
    if (move.getCapture() == SPACE)  // normal move
    {
       Piece * space = board[dest.getCol()][dest.getRow()];
+      
       board[dest.getCol()][dest.getRow()] = board[source.getCol()][source.getRow()]; // move piece to destination
+      board[dest.getCol()][dest.getRow()]->setLastMove(numMoves);
+      board[dest.getCol()][dest.getRow()]->setPosition(dest);
+      
       board[source.getCol()][source.getRow()] = space; // move space to source
    }
    else // normal capture
    {
       delete board[dest.getCol()][dest.getRow()];
       board[dest.getCol()][dest.getRow()] = board[source.getCol()][source.getRow()]; // move piece to destination
-      board[move.getSource().getCol()][source.getRow()] = new Space(source.getCol(), source.getRow()); // replace source with space
+      board[dest.getCol()][dest.getRow()]->setLastMove(numMoves);
+      board[dest.getCol()][dest.getRow()]->setPosition(dest);
+      
+      board[source.getCol()][source.getRow()] = new Space(source.getCol(), source.getRow()); // replace source with space
    }
    
    if (mt == Move::CASTLE_KING)
    {
-      Piece * space = board[5][0];
-      board[5][0] = board[7][0];
-      board[7][0] = space;
+      int row = (board[dest.getCol()][dest.getRow()]->isWhite()) ? 0 : 7;
+      Piece * space = board[5][row];
+      board[5][row] = board[7][row];
+      board[5][row]->setLastMove(numMoves);
+      Position pos(5,row);
+      board[5][row]->setPosition(pos);
+      
+      board[7][row] = space;
    }
    if (mt == Move::CASTLE_QUEEN)
    {
-      Piece * space = board[3][0];
-      board[3][0] = board[0][0];
-      board[0][0] = space;
+      int row = (board[dest.getCol()][dest.getRow()]->isWhite()) ? 0 : 7;
+      Piece * space = board[3][row];
+      board[3][row] = board[0][row];
+      board[3][row]->setLastMove(numMoves);
+      Position pos(3,row);
+      board[3][row]->setPosition(pos);
+      
+      board[0][row] = space;
    }
    if (mt == Move::ENPASSANT)
    {

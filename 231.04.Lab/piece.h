@@ -83,6 +83,7 @@ public:
       ++nMoves;
       lastMove = currentMove;
    }
+   virtual void setPosition(Position & pos) { position = pos; }
    
    virtual void getMovesNoSlide(CR directions[], int size, const Board& board, set <Move>& moves) const;
    virtual void getMovesSlide(  CR directions[], int size, const Board& board, set <Move>& moves) const;
@@ -106,6 +107,7 @@ protected:
       m.setDest(dest);
       m.setCapture(capture);
       m.setMoveType(Move::MOVE);
+      m.setPromote(INVALID);
       moves.insert(m);
    }
 };

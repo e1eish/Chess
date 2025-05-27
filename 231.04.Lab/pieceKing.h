@@ -31,6 +31,7 @@ private:
       m.setSource(position);
       m.setDest(dest);
       m.setMoveType(moveType);
+      m.setPromote(INVALID);
       moves.insert(m);
    }
 };

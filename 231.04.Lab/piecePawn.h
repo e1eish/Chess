@@ -31,8 +31,16 @@ private:
       m.setSource(position);
       m.setDest(dest);
       m.setCapture(capture);
+      
       if ((fWhite && dest.getRow() == 7) || (!fWhite && dest.getRow() == 0))
          m.setPromote(QUEEN);
+      else
+         m.setPromote(INVALID);
+//      if ((fWhite && dest.getRow() != 7) && (!fWhite && dest.getRow() != 0))
+//         m.setPromote(INVALID);
+//      else
+//         m.setPromote(QUEEN);
+      
       if (isEnpassant)
          m.setMoveType(Move::ENPASSANT);
       moves.insert(m);
