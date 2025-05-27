@@ -48,11 +48,11 @@ void Board::reset(bool fFree)
       for (int c = 0; c < 8; c++)
             board[c][r] = nullptr;
    
-   for (int c = 0; c < 8; c++)
-   {
-      board[c][1] = new Pawn(c,1, true /*white*/);
-      board[c][6] = new Pawn(c,6, false /*black*/);
-   }
+//   for (int c = 0; c < 8; c++)
+//   {
+//      board[c][1] = new Pawn(c,1, true /*white*/);
+//      board[c][6] = new Pawn(c,6, false /*black*/);
+//   }
    
    board[0][0] = new Rook(0,0, true /*white*/);
    board[7][0] = new Rook(7,0, true /*white*/);
@@ -81,7 +81,7 @@ void Board::reset(bool fFree)
             board[c][r] = new Space(c, r);
    
    numMoves = 0;
-   assertBoard();
+   //assertBoard();
 }
 
 // we really REALLY need to delete this.
@@ -114,12 +114,20 @@ Piece& Board::operator [] (const Position& pos)
  * BOARD : DISPLAY
  *         Display the board
  ***********************************************/
-void Board::display(const Position & posHover, const Position & posSelect) const
+void Board::display(const Position & posHover, const Position & posSelect, set <Move>& possible) const
 {
    pgout->drawBoard();
    
    pgout->drawHover(posHover);
    pgout->drawSelected(posSelect);
+   
+   if (possible.size() > 0)
+   {
+      // draw the possible moves
+      set <Move> :: iterator it;
+      for (it = possible.begin(); it != possible.end(); ++it)
+         (*pgout).drawPossible((*it).getDest());
+   }
    
    for (int r = 0; r < 8; r++)
       for (int c = 0; c < 8; c++)

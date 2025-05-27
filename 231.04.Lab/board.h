@@ -13,6 +13,9 @@
 #include <cassert>
 #include "move.h"   // Because we return a set of Move
 
+#include <set>
+using namespace std;
+
 class ogstream;
 class TestPawn;
 class TestKnight;
@@ -48,7 +51,7 @@ public:
    // getters
    virtual int  getCurrentMove() const { return numMoves;           }
    virtual bool whiteTurn()      const { return numMoves % 2 == 0;  }
-   virtual void display(const Position& posHover, const Position& posSelect) const;
+   virtual void display(const Position& posHover, const Position& posSelect, set <Move>& possible) const;
    virtual const Piece& operator [] (const Position& pos) const;
 
    // setters

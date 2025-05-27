@@ -87,7 +87,11 @@ void Pawn::getMoves(set <Move>& moves, const Board& board) const
       if (p.isValid())
       {
          piece = &board[p];
-         if (piece->getType() == PAWN && piece->isWhite() != fWhite && piece->justMoved(board.getCurrentMove()))
+         if (piece->getType() == PAWN &&
+             ((fWhite && position.getRow() == 4) || (!fWhite && position.getRow() == 3)) && // ensure enemy pawn did a double move by checking the row
+             piece->isWhite() != fWhite &&
+             piece->getNMoves() == 1 &&
+             piece->justMoved(board.getCurrentMove()))
          {
             p.setRow(p.getRow() + rowDiff);
             addMove(moves, p, PAWN, true);

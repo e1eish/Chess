@@ -345,6 +345,7 @@ void TestPawn::getMoves_enpassantWhite()
    
    Pawn blackPawn(7, 7, true /*black*/);
    blackPawn.fWhite = false;
+   blackPawn.nMoves = 1;
    blackPawn.lastMove = 1;
    blackPawn.position.colRow = 0x77;
    
@@ -408,6 +409,7 @@ void TestPawn::getMoves_enpassantBlack()
    
    Pawn whitePawn(7, 7, false /*white*/);
    whitePawn.fWhite = true;
+   whitePawn.nMoves = 1;
    whitePawn.lastMove = 1;
    whitePawn.position.colRow = 0x77;
    

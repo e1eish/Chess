@@ -59,6 +59,11 @@ public:
    void setValid()                { colRow = 0x00;        }
    void setInvalid()
    {
+      colRow = 0xff;
+   }
+   
+   void updateInvalid()
+   {
       const bool colBad = (colRow & 0x80) != 0;
       const bool rowBad = (colRow & 0x08) != 0;
 
@@ -94,12 +99,12 @@ public:
    Position(int c, int r)                 { set(c, r);                                               }
    virtual int getCol() const             { return (isInvalid() ? -1 : (int)((colRow & 0xf0) >> 4)); }
    virtual int getRow() const             { return (isInvalid() ? -1 : (int)((colRow & 0x0f) >> 0)); }
-   void setRow(int r)                     { colRow = getCol() * 16 + r; setInvalid();                }
-   void setCol(int c)                     { colRow = c * 16 + getRow(); setInvalid();                }
-   void set(int c, int r)                 
+   void setRow(int r)                     { colRow = getCol() * 16 + r; updateInvalid();             }
+   void setCol(int c)                     { colRow = c * 16 + getRow(); updateInvalid();             }
+   void set(int c, int r)
    {
       colRow = (uint8_t)((c << 4) | (r & 0x0F));
-      setInvalid();                
+      updateInvalid();
    }
 
    // Text:    The Position class can work with textual coordinates,
@@ -144,7 +149,7 @@ public:
 
       colRow = (uint8_t)((c << 4) | (r & 0x0F));
 
-      setInvalid();
+      updateInvalid();
    }
    double getSquareWidth()  const { return squareWidth;  }
    double getSquareHeight() const { return squareHeight; }

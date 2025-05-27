@@ -30,11 +30,42 @@ using namespace std;
  **************************************/
 void callBack(Interface *pUI, void * p)
 {
+   set<Move> possible;
+   Piece * piece;
    // the first step is to cast the void pointer into a game object. This
-   // is the first step of every single callback function in OpenGL. 
+   // is the first step of every single callback function in OpenGL.
    Board * pBoard = (Board *)p;
    
-   pBoard->display(pUI->getHoverPosition(), pUI->getSelectPosition());
+   Position select   = pUI->getSelectPosition();
+   Position hover    = pUI->getHoverPosition();
+   Position previous = pUI->getPreviousPosition();
+   
+   
+   
+   if (pUI->getPreviousPosition() != -1)
+   {
+      (*pBoard)[pUI->getPreviousPosition()].getMoves(possible, *pBoard);
+      auto it = find_if(possible.begin(), possible.end(), [&](const Move& move) { return move.getDest() == pUI->getSelectPosition(); });
+      if (it != possible.end())
+         pUI->clearSelectPosition();
+      else
+         (*pBoard)[pUI->getSelectPosition()].getMoves(possible, *pBoard);
+   }
+   
+   /*if (pUI->getSelectPosition() != -1)
+   {
+      piece = &(*pBoard)[pUI->getSelectPosition()];
+      //(*pBoard)[pUI->getSelectPosition()].getMoves(possible, *pBoard);
+      (*piece).getMoves(possible, *pBoard);
+      (*piece).getType();
+   }*/
+   
+   // if we clicked on a blank spot, then it is not selected
+   if (pUI->getSelectPosition() != -1 && (*pBoard)[pUI->getSelectPosition()].getType() == SPACE)
+      pUI->clearSelectPosition();
+   
+   // pBoard->display(pUI->getHoverPosition(), pUI->getSelectPosition());
+   pBoard->display(pUI->getHoverPosition(), pUI->getSelectPosition(), possible);
 }
 
 
