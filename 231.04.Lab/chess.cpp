@@ -45,7 +45,7 @@ void callBack(Interface *pUI, void * p)
       if (it != possible.end())
       {
          hasMove = true;
-         if ((*pBoard)[pUI->getPreviousPosition()].isWhite() == (*pBoard).whiteTurn())
+         if ((*pBoard)[pUI->getPreviousPosition()].isWhite() == (*pBoard).whiteTurn()) // ensure only move on one's own turn
              (*pBoard).move(*it);
          pUI->clearSelectPosition();
       }
@@ -55,14 +55,6 @@ void callBack(Interface *pUI, void * p)
       possible.clear();
       (*pBoard)[pUI->getSelectPosition()].getMoves(possible, *pBoard);
    }
-   
-   /*if (pUI->getSelectPosition() != -1)
-   {
-      piece = &(*pBoard)[pUI->getSelectPosition()];
-      //(*pBoard)[pUI->getSelectPosition()].getMoves(possible, *pBoard);
-      (*piece).getMoves(possible, *pBoard);
-      (*piece).getType();
-   }*/
    
    // if we clicked on a blank spot, then it is not selected
    if (pUI->getSelectPosition() != -1 && (*pBoard)[pUI->getSelectPosition()].getType() == SPACE)
@@ -92,7 +84,8 @@ int main(int argc, char** argv)
    testRunner();
    
    // Instantiate the graphics window
-   Interface ui("Chess");    
+   Interface ui("Chess");
+   ui.setFramesPerSecond(30);
 
    // Initialize the game class
    ogstream* pgout = new ogstream;
