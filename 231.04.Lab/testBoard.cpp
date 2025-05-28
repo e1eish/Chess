@@ -295,20 +295,20 @@ void TestBoard::move_pawnEnpassant()
    move.isWhite = true;
    move.moveType = Move::ENPASSANT;
    Board board(nullptr, true /*noreset*/);
-   board.numMoves = 17;
+   board.numMoves = 18;
    board.board[0][4] = new PieceSpy(0, 4, true  /*isWhite*/, PAWN);
    board.board[1][4] = new PieceSpy(1, 4, false /*isWhite*/, PAWN);
    board.board[1][5] = new PieceSpy(1, 5, false /*isWhite*/, SPACE);
-   board.board[0][4]->nMoves = 16;
+   board.board[0][4]->nMoves = 17;
    board.board[1][4]->nMoves = 1;
-   board.board[1][4]->lastMove = 16;
+   board.board[1][4]->lastMove = 17;
    PieceSpy::reset();
 
    // EXERCISE
    board.move(move);
 
    // VERIFY
-   assertUnit(18 == board.numMoves);
+   assertUnit(19 == board.numMoves);
    assertUnit(SPACE == (board.board[0][4])->getType());
    assertUnit(PAWN == (board.board[1][5])->getType());
    assertUnit(SPACE == (board.board[1][4])->getType());

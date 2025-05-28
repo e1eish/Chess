@@ -335,7 +335,7 @@ void Board::move(const Move & move)
    }
    if (mt == Move::ENPASSANT)
    {
-      int diff = (whiteTurn()) ? 1 : -1;
+      int diff = (whiteTurn()) ? -1 : 1;
       delete board[dest.getCol()][dest.getRow() + diff];
       board[dest.getCol()][dest.getRow() + diff] = new Space(dest.getCol(), dest.getRow() + diff);
    }

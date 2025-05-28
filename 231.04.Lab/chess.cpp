@@ -85,7 +85,7 @@ int main(int argc, char** argv)
    
    // Instantiate the graphics window
    Interface ui("Chess");
-   ui.setFramesPerSecond(30);
+   ui.setFramesPerSecond(90);
 
    // Initialize the game class
    ogstream* pgout = new ogstream;
