@@ -20,6 +20,7 @@
 #include <string>         // for STRING
 using namespace std;
 
+#define FILENAME "/Users/ethan_/Documents/GitHub/CSE231/Chess/231.04.Lab/enpassant.txt"
 
 /*************************************
  * All the interesting work happens here, when
@@ -90,9 +91,14 @@ int main(int argc, char** argv)
    // Initialize the game class
    ogstream* pgout = new ogstream;
    Board board(pgout);
+   
+   // read from a file
+   if (argc == 2)
+      board.readFile(argv[1]);
 
    // set everything into action
-   ui.run(callBack, (void *)(&board));      
+   board.readFile(FILENAME);
+   ui.run(callBack, (void *)(&board));
    
    // All done.
    delete pgout;

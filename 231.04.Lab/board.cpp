@@ -19,6 +19,9 @@
 #include "pieceQueen.h"
 #include "pieceKing.h"
 #include <cassert>
+#include <iostream>
+#include <fstream>
+#include <string>
 using namespace std;
 
 
@@ -374,6 +377,30 @@ void Board::move(const Move & move)
    numMoves++;
 }
 
+/**********************************************
+ * BOARD : READ FILE
+ *         Execute moves according to a file of smith notation moves
+ *   INPUT fileName The name of the file
+ *********************************************/
+void readFile(const char* fileName)
+{
+   // open the file
+   ifstream fin(fileName);
+   if (fin.fail())
+      return;
+
+   // read the file, one move at a time
+   string textMove;
+   // bool valid = true;
+   while (fin >> textMove)
+   {
+      Move m;
+      m = textMove;
+   }
+
+   // close and done
+   fin.close();
+}
 
 
 /**********************************************

@@ -59,6 +59,8 @@ public:
    virtual void reset(bool fFree = true);
    virtual void move(const Move & move);
    virtual Piece& operator [] (const Position& pos);
+   
+   void readFile(const char* fileName);
 
 protected:
    void  assertBoard();
