@@ -294,7 +294,7 @@ void Board::move(const Move & move)
    Position source   = move.getSource();
    Position dest     = move.getDest();
    
-   if (move.getCapture() == SPACE)  // normal move
+   if (move.getCapture() == SPACE || move.getCapture() == INVALID)  // normal move
    {
       Piece * space = board[dest.getCol()][dest.getRow()];
       
@@ -316,7 +316,7 @@ void Board::move(const Move & move)
    
    if (mt == Move::CASTLE_KING)
    {
-      int row = (board[dest.getCol()][dest.getRow()]->isWhite()) ? 0 : 7;
+      int row = (board[dest.getCol()][dest.getRow()]->isWhite()) ? 0 : 7;  // get the correct row for the color
       Piece * space = board[5][row];
       board[5][row] = board[7][row];
       board[5][row]->setLastMove(numMoves);
@@ -336,9 +336,10 @@ void Board::move(const Move & move)
       
       board[0][row] = space;
    }
+   
    if (mt == Move::ENPASSANT)
    {
-      int diff = (whiteTurn()) ? -1 : 1;
+      int diff = (whiteTurn()) ? -1 : 1;  // get the correct direction for the color
       delete board[dest.getCol()][dest.getRow() + diff];
       board[dest.getCol()][dest.getRow() + diff] = new Space(dest.getCol(), dest.getRow() + diff);
    }
@@ -352,19 +353,15 @@ void Board::move(const Move & move)
          case QUEEN:
             newPiece = new Queen(dest.getCol(), dest.getRow(), whiteTurn());
             break;
-            
          case ROOK:
             newPiece = new Rook(dest.getCol(), dest.getRow(), whiteTurn());
             break;
-            
          case BISHOP:
             newPiece = new Bishop(dest.getCol(), dest.getRow(), whiteTurn());
             break;
-            
          case KNIGHT:
             newPiece = new Knight(dest.getCol(), dest.getRow(), whiteTurn());
             break;
-            
          default:
             newPiece = new Pawn(dest.getCol(), dest.getRow(), whiteTurn());
             break;
@@ -382,7 +379,7 @@ void Board::move(const Move & move)
  *         Execute moves according to a file of smith notation moves
  *   INPUT fileName The name of the file
  *********************************************/
-void readFile(const char* fileName)
+void Board::readFile(const char* fileName)
 {
    // open the file
    ifstream fin(fileName);
@@ -391,11 +388,11 @@ void readFile(const char* fileName)
 
    // read the file, one move at a time
    string textMove;
-   // bool valid = true;
    while (fin >> textMove)
    {
       Move m;
       m = textMove;
+      move(m);
    }
 
    // close and done

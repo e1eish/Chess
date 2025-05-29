@@ -45,25 +45,58 @@ public:
       text = rhs;
       source = rhs.substr(0,2);
       dest   = rhs.substr(2,4);
-      if (rhs.length() == 5)
+      if (rhs.length() > 4)
       {
-         if (rhs[4] == 'c')
-            moveType = CASTLE_KING;
-         else if (rhs[4] == 'C')
-            moveType = CASTLE_QUEEN;
-         else if (rhs[4] == 'E')
+         for (auto it = rhs.cbegin() + 4; it != rhs.end(); ++it)
          {
-            moveType = ENPASSANT;
-            capture = PAWN;
-         }
-         else
-         {
-            capture = pieceTypeFromLetter(rhs[4]);
-            moveType = MOVE;
+            switch (*it)
+            {
+               case 'p':   // capture a pawn
+               case 'n':   // capture a knight
+               case 'b':   // capture a bishop
+               case 'r':   // capture a rook
+               case 'q':   // capture a queen
+                  capture  = pieceTypeFromLetter(*it);
+                  moveType = MOVE;
+                  promote  = INVALID;
+                  break;
+                  
+               case 'c':  // king side castle
+                  moveType = CASTLE_KING;
+                  promote = INVALID;
+                  break;
+               case 'C':  // queen side castle
+                  moveType = CASTLE_QUEEN;
+                  promote = INVALID;
+                  break;
+                  
+               case 'E':  // enpassant
+                  moveType = ENPASSANT;
+                  capture = PAWN;
+                  promote = INVALID;
+                  break;
+                  
+               case 'N':  // promote to knight
+                  promote = KNIGHT;
+                  break;
+               case 'B':  // promote to bishop
+                  promote = BISHOP;
+                  break;
+               case 'R':  // promote to rook
+                  promote = ROOK;
+                  break;
+               case 'Q':  // promote to queen
+                  promote = QUEEN;
+                  break;
+            }
          }
       }
       else
+      {
          moveType = MOVE;
+         capture  = INVALID;
+         promote  = INVALID;
+      }
       return *this;
    }
    

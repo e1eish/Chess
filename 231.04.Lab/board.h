@@ -13,6 +13,7 @@
 #include <cassert>
 #include "move.h"   // Because we return a set of Move
 
+#include <string>
 #include <set>
 using namespace std;
 

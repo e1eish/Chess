@@ -2,7 +2,7 @@
 * Source File:
 *    Lab 04: Chess
 * Author:
-*    <your name here>
+*    Ethan Leishman, Noah McSheehy, Bro. Helfrich
 * Summary:
 *    Play the game of chess
 ************************************************************************/
@@ -20,7 +20,6 @@
 #include <string>         // for STRING
 using namespace std;
 
-#define FILENAME "/Users/ethan_/Documents/GitHub/CSE231/Chess/231.04.Lab/enpassant.txt"
 
 /*************************************
  * All the interesting work happens here, when
@@ -38,11 +37,11 @@ void callBack(Interface *pUI, void * p)
    Board * pBoard = (Board *)p;
    
    bool hasMove = false;
-   if (pUI->getPreviousPosition() != -1 && pUI->getSelectPosition() != -1)
+   if (pUI->getPreviousPosition() != -1 && pUI->getSelectPosition() != -1)  // if there are two selections made, see if it makes a valid move
    {
       possible.clear();
       (*pBoard)[pUI->getPreviousPosition()].getMoves(possible, *pBoard);
-      auto it = find_if(possible.begin(), possible.end(), [&](const Move& move) { return move.getDest() == pUI->getSelectPosition(); });
+      auto it = find_if(possible.begin(), possible.end(), [&](const Move& move) { return move.getDest() == pUI->getSelectPosition(); });  // find if the destination is in a valid move
       if (it != possible.end())
       {
          hasMove = true;
@@ -51,7 +50,7 @@ void callBack(Interface *pUI, void * p)
          pUI->clearSelectPosition();
       }
    }
-   if (!hasMove && pUI->getSelectPosition() != -1)
+   if (!hasMove && pUI->getSelectPosition() != -1)  // if there is no valid move, reset
    {
       possible.clear();
       (*pBoard)[pUI->getSelectPosition()].getMoves(possible, *pBoard);
@@ -97,7 +96,6 @@ int main(int argc, char** argv)
       board.readFile(argv[1]);
 
    // set everything into action
-   board.readFile(FILENAME);
    ui.run(callBack, (void *)(&board));
    
    // All done.
